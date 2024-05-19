@@ -1,0 +1,90 @@
+.reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.intro {
+  height: 100vh;
+  background-color: #9eaebb;
+  display: grid;
+  grid-template-columns: 8em 1fr 1fr 1fr;
+  grid-template-rows: 13em auto 3em auto 1fr 1rem;
+
+  h2 {
+    font-family: ITCAvantGardeStd;
+    font-size: 7.25em;
+    font-weight: 100;
+    color: #fafafa;
+    letter-spacing: -0.4rem;
+    line-height: 7rem;
+    white-space: nowrap;
+  }
+  .indented {
+    margin-left: 45%;
+  }
+}
+
+.introText {
+  min-width: 0;
+  grid-row-start: 4;
+  grid-column-start: 2;
+}
+
+.introHello {
+  grid-row-start: 2;
+  grid-column-start: 4;
+  overflow: hidden;
+  height: 10rem;
+  div {
+    position: relative;
+    animation: hello-animation 6s infinite
+      cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    h2 {
+      line-height: 10rem;
+    }
+  }
+}
+
+.backText {
+  position: relative;
+  z-index: 2;
+}
+
+.frontText {
+  position: relative;
+  z-index: 3;
+}
+
+.gradientText {
+  background-color: #f3ec78;
+  background-image: linear-gradient(45deg, #0086d1, #af4261);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+@keyframes hello-animation {
+  0% {
+    top: 0%;
+  }
+  28% {
+    top: 0%;
+  }
+  34% {
+    top: -100%;
+  }
+  62% {
+    top: -100%;
+  }
+  68% {
+    top: -200%;
+  }
+  95% {
+    top: -200%;
+  }
+  100% {
+    top: -300%;
+  }
+}
