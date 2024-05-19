@@ -1,30 +1,29 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.scss";
+import intro from "../styles/intro.module.scss";
 import classnames from "classnames";
 
 export default function Home() {
   return (
     <main>
-      <section className={styles.intro}>
-        <div className={styles.introText}>
-          <h2 className={classnames(styles.backText, styles.indented)}>
-            I'm a
+      <section className={intro.intro}>
+        <div className={intro.introText}>
+          <h2 className={classnames(intro.backText, intro.indented)}>I'm a</h2>
+          <h2 className={intro.frontText}>
+            <span className={intro.gradientText}>web developer</span>
           </h2>
-          <h2 className={styles.frontText}>
-            <span className={styles.gradientText}>web developer</span>
-          </h2>
-          <h2 className={styles.indented}>
-            <span className={styles.backText}>with</span>{" "}
-            <span className={classnames(styles.frontText, styles.gradientText)}>
+          <h2 className={intro.indented}>
+            <span className={intro.backText}>with</span>{" "}
+            <span className={classnames(intro.frontText, intro.gradientText)}>
               UX design
             </span>{" "}
-            <span className={styles.backText}>focus</span>
+            <span className={intro.backText}>focus</span>
           </h2>
         </div>
 
-        <div className={styles.introHello}>
+        <div className={intro.introHello}>
           <div>
             <h2>
+              {" "}
               hello!
               <br />
               hola!
@@ -34,6 +33,9 @@ export default function Home() {
               hello!
             </h2>
           </div>
+        </div>
+        <div className={intro.introPic}>
+          <img src="../images/front-img.png" alt="Noah" />
         </div>
       </section>
     </main>
