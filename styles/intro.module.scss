@@ -1,13 +1,25 @@
-.intro {
-  height: 100vh;
+.main {
+  // height: 200vh;
+  position: relative;
+}
+.introSection {
+  top: 0;
+  // position: sticky;
+  position: relative;
+  height: 115vh;
   background-color: #9eaebb;
+}
+
+.intro {
+  height: 100%;
   display: grid;
-  grid-template-columns: 8em 1fr 1fr 1fr;
+  grid-template-columns: 14% 1fr 1fr 1fr;
   grid-template-rows: 13em auto 3em auto 1fr 1rem;
 
-  h2 {
+  h2,
+  p {
     font-family: ITCAvantGardeStd;
-    font-size: 7.25em;
+    font-size: calc(5.25rem + 2vw);
     font-weight: 100;
     color: #fafafa;
     letter-spacing: -0.4rem;
@@ -76,9 +88,12 @@
   justify-content: center;
   grid-row-start: 6;
   grid-column-start: 3;
+  z-index: 2;
 
   img {
-    transform: scale(1.25);
+    // transform: scale(1.25);
+    height: 110vh;
+    width: auto;
     transform-origin: bottom center;
     margin-right: 7rem;
     z-index: 2;
