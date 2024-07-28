@@ -31,3 +31,15 @@ img {
   /* max-width: 100%; */
   /* height: auto; */
 }
+
+.stickyContainer {
+  display: grid;
+  justify-content: center;
+}
+
+.top {
+  z-index: 3;
+}
+.bottom {
+  z-index: 1;
+}

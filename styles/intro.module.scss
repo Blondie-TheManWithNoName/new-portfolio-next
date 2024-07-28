@@ -35,6 +35,7 @@
   min-width: 0;
   grid-row-start: 4;
   grid-column-start: 2;
+  z-index: 3;
 }
 
 .introHello {
@@ -88,8 +89,8 @@
   justify-content: center;
   grid-row-start: 6;
   grid-column-start: 3;
+  // margin-top: 15vh;
   z-index: 2;
-
   img {
     // transform: scale(1.25);
     height: 110vh;

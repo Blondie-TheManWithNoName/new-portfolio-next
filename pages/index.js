@@ -14,6 +14,7 @@ import {
   motion,
   transform,
   cubicBezier,
+  delay,
 } from "framer-motion";
 import Works from "../components/Works";
 
@@ -89,9 +90,41 @@ export default function Home() {
     requestAnimationFrame(raf);
   }, []);
 
+  const textContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.125, delayChildren: 0.25 },
+    },
+  };
+
+  const textAnimation = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 250,
+        stiffness: 2000,
+        mass: 20,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: "200%",
+      transition: {
+        type: "spring",
+        damping: 250,
+        stiffness: 2000,
+        mass: 20,
+      },
+    },
+  };
+
   const curveTransform = useTransform(scrollYProgress, [0, 1], [300, 600]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
-  const yPic = useTransform(scrollYProgress, [0, 1], [0, 1050]);
+  const yPic = useTransform(scrollYProgress, [0, 1], [0, 2000]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 1500]);
   const height = useTransform(scrollYProgress, [0, 1], [400, 200]);
   // console.log("y", scrollYProgress);
   return (
@@ -102,27 +135,80 @@ export default function Home() {
       </Head>
       <main className={intro.main} ref={container}>
         <section className={intro.introSection}>
-          <div className={intro.intro}>
-            <h1 className={intro.introText}>
-              <p className={classnames(intro.backText, intro.indented)}>
-                I'm a
-              </p>
-              <p className={intro.frontText}>
-                <span className={intro.gradientText}>web developer</span>
-              </p>
-              <p className={intro.indented}>
-                <span className={intro.backText}>with</span>{" "}
-                <span
-                  className={classnames(intro.frontText, intro.gradientText)}
+          <motion.div className={intro.intro}>
+            <motion.div className={intro.introPic} style={{ y: yPic }}>
+              <img src="../images/test-11.png" alt="Noah" />
+            </motion.div>
+            {/* <div className={intro.intro}> */}
+            <motion.h1 className={intro.introText} style={{ y: yText }}>
+              <motion.div
+                variants={textContainer}
+                initial="hidden"
+                animate="visible"
+              >
+                <div
+                  style={{
+                    overflow: "hidden",
+                    width: "fit-content",
+                  }}
+                  className={intro.indented}
                 >
-                  UX design
-                </span>{" "}
-                <span className={intro.backText}>focus</span>
-              </p>
-            </h1>
+                  <motion.p className={intro.backText} variants={textAnimation}>
+                    I'm a
+                  </motion.p>
+                </div>
+
+                <div
+                  style={{
+                    overflow: "hidden",
+                    width: "fit-content",
+                    // paddingBlock: "10rem",
+                    minidth: "0",
+                    minHeight: "0",
+                  }}
+                >
+                  <motion.p
+                    className={intro.frontText}
+                    variants={textAnimation}
+                  >
+                    <span className={intro.gradientText}>web developer</span>
+                  </motion.p>
+                </div>
+
+                <div
+                  style={{
+                    overflow: "hidden",
+                    width: "fit-content",
+                  }}
+                  className={intro.indented}
+                >
+                  <motion.p
+                    className={intro.frontText}
+                    // className={intro.indented}
+                    variants={textAnimation}
+                    style={{
+                      overflow: "hidden",
+                      width: "fit-content",
+                      paddingBottom: "2rem",
+                    }}
+                  >
+                    <motion.span>with</motion.span>{" "}
+                    <motion.span
+                      className={classnames(
+                        intro.frontText,
+                        intro.gradientText
+                      )}
+                    >
+                      UX design
+                    </motion.span>{" "}
+                    <motion.span>focus</motion.span>
+                  </motion.p>
+                </div>
+              </motion.div>
+            </motion.h1>
 
             <div className={intro.introHello}>
-              <div>
+              {/* <div>
                 <h2>
                   {" "}
                   hello!
@@ -133,12 +219,10 @@ export default function Home() {
                   <br />
                   hello!
                 </h2>
-              </div>
+              </div> */}
             </div>
-            <motion.div className={intro.introPic} style={{ y: yPic }}>
-              <img src="../images/test-11.png" alt="Noah" />
-            </motion.div>
-          </div>
+            {/* </div> */}
+          </motion.div>
         </section>
         {/* <section className={carousell.carousell} ref={carousellRef}> */}
         {dimensions.width > 0 && (
@@ -159,7 +243,7 @@ export default function Home() {
           className={aboutme.aboutMe}
           style={{
             marginBottom: "10em",
-            boxShadow: "0px -3px 25px 0px rgba(16, 49, 74, 0.5)",
+            // boxShadow: "0px -3px 25px 0px rgba(16, 49, 74, 0.5)",
           }}
         >
           <div className={aboutme.title}>
@@ -182,11 +266,11 @@ export default function Home() {
         </section>
         {/* <Carousell></Carousell> */}
         {/* </section> */}
-        <section className={aboutme.aboutMe}>
+        {/* <section className={aboutme.aboutMe}>
           <div className={aboutme.title}>
             <h2 className={intro.gradientText}>WORK</h2>
           </div>
-        </section>
+        </section> */}
         <Works />
         <section
           className={aboutme.aboutMe}
