@@ -242,7 +242,7 @@ export default function Home() {
         <section
           className={aboutme.aboutMe}
           style={{
-            marginBottom: "10em",
+            paddingBottom: "10em",
             // boxShadow: "0px -3px 25px 0px rgba(16, 49, 74, 0.5)",
           }}
         >

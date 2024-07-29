@@ -34,7 +34,7 @@ img {
 
 .stickyContainer {
   display: grid;
-  justify-content: center;
+  justify-content: end;
 }
 
 .top {
@@ -42,4 +42,13 @@ img {
 }
 .bottom {
   z-index: 1;
+}
+
+.gradientText {
+  background-color: #f3ec78;
+  background-image: linear-gradient(45deg, #0086d1, #af4261);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
