@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/work.module.scss";
 import Work from "./Work";
+import useScrollPosition from "../hooks/useScrollPosition";
+
 import { FlatTree, motion } from "framer-motion";
+import Sticky from "react-stickynode";
 
 import house from "../public/images/logos/house.svg";
 import logo1 from "../public/images/logos/theogony.svg";
@@ -36,6 +39,27 @@ const images = [
 export default function Works() {
   const elRef = useRef(null);
 
+  const [boundingTop, setBoundingTop] = useState(0);
+
+  useEffect(() => {
+    const updateBoundingTop = () => {
+      if (elRef.current) {
+        const rect = elRef.current.getBoundingClientRect();
+        setBoundingTop(rect.top);
+      }
+    };
+
+    // Initial update
+    updateBoundingTop();
+
+    // Update on scroll
+    window.addEventListener("scroll", updateBoundingTop);
+
+    return () => {
+      window.removeEventListener("scroll", updateBoundingTop);
+    };
+  }, []);
+
   const variants = {
     hidden: { scale: 0.95 },
     visible: { scale: 1 },
@@ -44,6 +68,7 @@ export default function Works() {
   const [imageSrc, setImageSrc] = useState(test2?.src);
   const [isAnimating, setIsAnimating] = useState(false);
   const [workIndex, setWorkIndex] = useState(0);
+  const [fixed, setFixed] = useState(0);
 
   var currentImg = undefined;
 
@@ -81,21 +106,57 @@ export default function Works() {
     }
     return color;
   };
+  const scrollY = useScrollPosition();
+  const handleStateChange = (status) => {
+    if (status.status === Sticky.STATUS_FIXED) {
+      console.log("FIXED", scrollY);
+      setFixed(scrollY);
+    } else {
+      // changeVideo(id);
+      setFixed(false);
+    }
+  };
+
+  useEffect(() => {
+    if (fixed) {
+      // console.log("scroll", fixed, scrollY);
+      if (scrollY - fixed >= 500 * (workIndex + 1)) {
+        setWorkIndex(workIndex + 1);
+      }
+      if (scrollY - fixed < 500 * workIndex) {
+        setWorkIndex(workIndex - 1);
+      }
+    }
+
+    return () => {};
+  }, [scrollY, fixed, workIndex]);
 
   return (
     <div className={styles.stickyContainer}>
-      <div className={styles.workContainer}>
+      <Sticky
+        top={0}
+        onStateChange={handleStateChange}
+        innerClass="workContainer"
+        className="workContainer"
+      >
+        {/* <div className={styles.workContainer}> */}
         <div className={styles.title}>
           <h2>
             Theogony
             <span>Greek Gods Dynamic Family Tree</span>
           </h2>
         </div>
-        <video muted loop autoPlay>
+        {/* <div className={styles.videosContainer}> */}
+        <video className={styles.video} muted loop autoPlay>
           <source src={`/videos/test-video-2.mp4`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <section>
+        {/* <video className={styles.video} muted loop autoPlay>
+            <source src={`/videos/test-video-1.mp4`} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div> */}
+        <section className={styles.skills}>
           <img src="https://skillicons.dev/icons?i=git" />
           <img src="https://skillicons.dev/icons?i=javascript" />
           <img src="https://skillicons.dev/icons?i=html" />
@@ -112,15 +173,17 @@ export default function Works() {
             <div
               style={{
                 backgroundColor: workIndex === index ? "#fff" : "#ccc",
-                // width: workIndex === index ? "4rem" : "4rem",
-                // height: workIndex === index ? "4rem" : "4rem",
+                width: workIndex === index ? "6rem" : "4rem",
+                height: workIndex === index ? "6rem" : "4rem",
               }}
             >
               <img src={logo?.src} alt="Project Logo" />
             </div>
           ))}
         </div>
-      </div>
+      </Sticky>
+
+      {/* </div> */}
       {/* <div className={styles.video} ref={elRef}>
         <div style={{ zIndex: 1 }} className={styles.workTitle}>
           <span>WORK</span>

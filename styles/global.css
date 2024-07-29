@@ -52,3 +52,11 @@ img {
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
+
+.workContainer {
+  width: 100%;
+  height: 99vh;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+}
