@@ -3,9 +3,6 @@ import intro from "../styles/intro.module.scss";
 import carousell from "../styles/carousell.module.scss";
 import aboutme from "../styles/aboutme.module.scss";
 import classnames from "classnames";
-import TopDivider from "../components/TopDivider";
-import Carousell from "../components/Carousell";
-import BotDivider from "../components/botDivider";
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import {
@@ -234,21 +231,6 @@ export default function Home() {
             {/* </div> */}
           </motion.div>
         </section>
-        {/* <section className={carousell.carousell} ref={carousellRef}> */}
-        {dimensions.width > 0 && (
-          <TopDivider
-            {...dimensions}
-            heightTop={heightTop}
-            heightBot={heightBot}
-            shadow={shadow}
-            y={{ y }}
-            x={x}
-          />
-        )}
-        {/* <motion.div
-          className={classnames(intro.gradientText, carousell.carousellDiv)}
-          style={y}
-        ></motion.div> */}
         <section
           className={aboutme.aboutMe}
           // style={{
