@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/work.module.scss";
+import classNames from "classnames";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import PathImage from "./PathImage";
@@ -7,6 +8,7 @@ import PathImage from "./PathImage";
 const ParallaxImage = ({
   imageUrl,
   startOffset,
+  className,
   endOffset,
   move,
   path,
@@ -15,19 +17,27 @@ const ParallaxImage = ({
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [startOffset, endOffset], [0, move]);
 
+  const dynamicClass = classNames(styles.container, {
+    [styles.backgroundImage]: className === "backgroundImage",
+    [styles.bgCards]: className === "bgCards",
+  });
+
+  console.log("className", className);
+  console.log("dynamicClass", dynamicClass);
+
   return (
     <motion.div style={{ y }} className={styles.background1}>
       {fixedPositions.map((style, index) => (
         <PathImage
-          image={path.src}
+          image={
+            Array.isArray(path) ? path[index % path.length].src : path?.src
+          }
           index={index}
           startOffset={startOffset}
           endOffset={endOffset}
           scrollY={scrollY}
+          className={dynamicClass}
           style={{
-            width: "10%",
-            position: "absolute",
-            borderRadius: "1rem",
             ...style.style,
           }}
           rotation={style.rotation}
