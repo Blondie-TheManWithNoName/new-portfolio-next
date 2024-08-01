@@ -29,7 +29,7 @@ export default function Work({
   return (
     <Sticky
       onStateChange={handleStateChange}
-      top={700}
+      top={id * 85}
       innerActiveClass="stickyContainer"
       className="stickyContainer"
     >
