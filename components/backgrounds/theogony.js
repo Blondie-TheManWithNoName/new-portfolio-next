@@ -1,4 +1,4 @@
-export const fixedPositions1 = [
+export const bgTheogony = [
   {
     style: { top: "5%", left: "10%", rotate: "30deg", transform: "scaleX(-1)" },
     rotation: Math.random() > 0.5 ? 20 : -20,
