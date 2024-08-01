@@ -83,11 +83,21 @@ export default function Home() {
 
   useEffect(() => {
     const lenis = new Lenis();
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
     requestAnimationFrame(raf);
+
+    // lenis.on("scroll", ({ scroll }) => {
+    //   console.log("isScrolling:", lenis.isScrolling);
+    // });
+
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   const textContainer = {
@@ -124,7 +134,7 @@ export default function Home() {
   const curveTransform = useTransform(scrollYProgress, [0, 1], [300, 600]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
   const yPic = useTransform(scrollYProgress, [0, 1], [0, 2000]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, 1500]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 1000]);
   const height = useTransform(scrollYProgress, [0, 1], [400, 200]);
   // console.log("y", scrollYProgress);
   return (
@@ -241,10 +251,10 @@ export default function Home() {
         ></motion.div> */}
         <section
           className={aboutme.aboutMe}
-          style={{
-            marginBottom: "10em",
-            // boxShadow: "0px -3px 25px 0px rgba(16, 49, 74, 0.5)",
-          }}
+          // style={{
+          //   paddingBottom: "10em",
+          //   // boxShadow: "0px -3px 25px 0px rgba(16, 49, 74, 0.5)",
+          // }}
         >
           <div className={aboutme.title}>
             <h2 className={intro.gradientText}>ABOUT ME</h2>
