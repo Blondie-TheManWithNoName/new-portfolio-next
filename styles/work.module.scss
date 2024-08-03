@@ -4,6 +4,9 @@
   height: 16000px;
   z-index: 3;
   position: relative;
+  // font-family: ITCAvantGardeStd;
+  // font-family: ESBuildTRIAL-Regular;
+  font-family: "Poppins", sans-serif;
 
   background-color: #fff;
 }
@@ -17,7 +20,9 @@
 
 .videosContainer {
   position: absolute;
-  transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+  // transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  // transition: all 1s cubic-bezier(0.45, 0, 0.55, 1);
   display: flex;
   flex-direction: column;
   gap: 10rem;
@@ -26,20 +31,24 @@
   width: 100%;
 
   video {
-    border-radius: 1.75rem;
+    border-radius: 1.25rem;
     object-fit: cover;
     height: 60vh;
     width: 100%;
-    // cursor: pointer;
-
     box-shadow: 0px 2px 5px 2px rgba(28, 29, 32, 0.25);
-
-    // box-shadow: 0px 0px 0px 20px rgba(28, 29, 32, 1);
   }
 }
 
 .video:hover {
   cursor: pointer;
+}
+
+.recentTitle {
+  letter-spacing: 0rem;
+  font-weight: bolder;
+  position: absolute;
+  margin: auto;
+  font-size: calc(5.25rem + 2vw);
 }
 
 .workTitle {
@@ -54,14 +63,6 @@
   align-items: center;
   cursor: default;
 }
-
-// .video {
-//   margin-inline: 15rem;
-//   margin-top: 2em;
-//   object-fit: cover;
-//   height: 60%;
-//   border-radius: 1.75rem;
-// }
 
 .skills {
   margin-inline: 15rem;
@@ -132,7 +133,6 @@
   height: 12rem;
   padding-left: 15rem;
   overflow: hidden;
-  // background-color: rgba($color: #fff, $alpha: 0.5);
 }
 
 .skillsWrapped {
@@ -147,7 +147,8 @@
 }
 
 .skillsContainer {
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  // transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
   position: absolute;
   display: flex;
   flex-direction: column;

@@ -1,6 +1,5 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import styles from "../styles/work.module.scss";
 
 export default function PathImage({
   image,
@@ -16,13 +15,13 @@ export default function PathImage({
 
   return (
     <img
-      key={index} // Use the index as the key for each image
+      key={index}
       src={image}
       alt={`Parallax ${index}`}
       className={className}
       style={{
         ...style,
-        rotate: `${parseFloat(style.rotate) + rotate.get()}deg`, // Add rotation based on scroll
+        rotate: `${parseFloat(style.rotate) + rotate.get()}deg`,
       }}
     />
   );

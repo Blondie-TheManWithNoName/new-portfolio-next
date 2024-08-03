@@ -9,6 +9,7 @@
   grid-template-columns: 14% 1fr 1.5fr;
   // grid-template-rows: 5rem auto 5rem 1fr;
   grid-template-rows: 5rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .title {
@@ -30,7 +31,7 @@
   font-size: 2em;
   margin-top: 0.7rem;
   line-height: 3rem;
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.075rem;
   word-spacing: 0.25rem;
   text-wrap: balance;
 }

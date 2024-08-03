@@ -1,123 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/work.module.scss";
-import Work from "./Work";
+import intro from "../styles/intro.module.scss";
 import ParallaxImage from "./ParallaxImage";
 import useScrollPosition from "../hooks/useScrollPosition";
 import classnames from "classnames";
 
-import { FlatTree, motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Sticky from "react-stickynode";
-
-import house from "../public/images/logos/house.svg";
-import logo1 from "../public/images/logos/theogony.svg";
-import logo2 from "../public/images/logos/es_recader.svg";
-import logo3 from "../public/images/logos/theogony_api.svg";
-import logo4 from "../public/images/logos/kenken.svg";
-import logo5 from "../public/images/logos/snake_two.svg";
-import logo6 from "../public/images/logos/cards.svg";
-
-import background1 from "../public/images/background/theogony-1.svg";
-import background2 from "../public/images/background/theogony-2.svg";
-import snake1 from "../public/images/background/snake-1.svg";
-import snake2 from "../public/images/background/snake-2.svg";
-
-import { bgTheogony } from "./backgrounds/theogony";
-import pathTheogony from "../public/images/background/path.svg";
-import { bgCards } from "./backgrounds/cards";
-import pathCard1 from "../public/images/background/card-path-1.svg";
-import pathCard2 from "../public/images/background/card-path-2.svg";
-import pathCard3 from "../public/images/background/card-path-3.svg";
-import pathCard4 from "../public/images/background/card-path-4.svg";
-import pathCard5 from "../public/images/background/card-path-5.svg";
-import pathCard6 from "../public/images/background/card-path-6.svg";
-import pathCard7 from "../public/images/background/card-path-7.svg";
-import pathCard8 from "../public/images/background/card-path-8.svg";
-import bike from "../public/images/background/bike.svg";
-import box from "../public/images/background/package-open.svg";
-import truck from "../public/images/background/truck-solid.svg";
-
-import kenken1 from "../public/images/background/KenKen/path1.svg";
-import kenken2 from "../public/images/background/KenKen/path2.svg";
-import kenken3 from "../public/images/background/KenKen/path3.svg";
-import kenken4 from "../public/images/background/KenKen/path4.svg";
-const pathCards = [
-  pathCard1,
-  pathCard2,
-  pathCard3,
-  pathCard4,
-  pathCard5,
-  pathCard6,
-  pathCard7,
-  pathCard8,
-];
-
-const pathRecaders = [bike, box, truck];
-const pathKenKen = [kenken1, kenken2, kenken3, kenken4];
-
-const backgrounds = [
-  { background: undefined, path: undefined, className: "" },
-  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
-  { background: bgCards, path: pathRecaders, className: "backgroundImage" },
-  { background: bgTheogony, path: pathKenKen, className: "backgroundImage" },
-  { background: bgCards, path: pathCards, className: "bgCards" },
-  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
-  { background: bgCards, path: pathCards, className: "bgCards" },
-];
-
-// import test2 from "../public/images/test-pic-2.jpg";
-// import video1 from "../public/videos/test-video-1.mp4";
-// import video2 from "../public/videos/test-video-2.mp4";
-// import video3 from "../public/videos/test-video-3.mp4";
-// import video4 from "../public/videos/test-video-4.mp4";
-// import video5 from "../public/videos/test-video-5.mp4";
-// import video6 from "../public/videos/test-video-6.mp4";
-
-import test2 from "../public/images/test-pic-2.jpg";
-import test3 from "../public/images/test-pic-3.jpg";
-import test4 from "../public/images/test-pic-2.jpg";
-import test5 from "../public/images/test-pic-3.jpg";
-import test6 from "../public/images/test-pic-2.jpg";
-
-// import video from "../public/images/test-video-1.mp4";
-
-const logos = [house, logo1, logo2, logo3, logo4, logo5, logo6];
-const titles = [
-  { title: "⠀", description: "⠀" },
-  { title: "Theogony", description: "Greek Gods Dynamic Family Tree" },
-  { title: "Es Recader", description: "Description" },
-  { title: "Theogony API", description: "Description" },
-  { title: "Ken Ken", description: "Description" },
-  { title: "Snake II", description: "Description" },
-  { title: "Card Mat", description: "Description" },
-];
-
-const HEIGHT = 2000;
-
-const skills = [
-  ["", "", "", "", "", "", "", ""],
-  ["", "typescript", "html", "sass", "react", "figma", "", ""],
-  ["", "javascript", "html", "tailwind", "nextjs", "figma", "", ""],
-  ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
-  ["", "java", "idea", "figma", "gitlab", "", "", ""],
-  ["", "javascript", "html", "css", "git", "", "", ""],
-  ["", "javascript", "html", "css", "git", "nodejs", "express", ""],
-];
-const images = [
-  { color1: "#46B861", color2: "#ffffff" },
-  { color1: "#F97061", color2: "#ffffff" },
-  { color1: "#46B861", color2: "#ffffff" },
-  { color1: "#42617E", color2: "#7C68CD" },
-  { color1: "#3967BA", color2: "#E45420" },
-  { color1: "#F37363", color2: "#404A4F" },
-];
-// const logos = [logo1, logo2];
+import { logos, backgrounds, titles, skills } from "../assets/assets";
 
 export default function Works({ setShowBall }) {
-  const elRef = useRef(null);
-
-  const [imageSrc, setImageSrc] = useState(test2?.src);
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
+  const HEIGHT = 2000;
 
   const scrollY = useScrollPosition();
   const handleStateChange = (status) => {
@@ -129,7 +24,6 @@ export default function Works({ setShowBall }) {
   };
 
   useEffect(() => {
-    // console.log("scrollY", scrollY, window.innerHeight + window.innerHeight);
     if (fixed) {
       if (scrollY - fixed >= HEIGHT * (workIndex + 1)) {
         setWorkIndex(workIndex + 1);
@@ -144,41 +38,19 @@ export default function Works({ setShowBall }) {
 
   const container = useRef();
 
-  // const { scrollYProgress } = useScroll({
-  //   target: container,
-  //   offset: ["start end", "end start"],
-  // });
-
-  const [yPics, setYPics] = useState([]);
-
-  // const yPic2 = useTransform(scrollYProgress, [0, 1], [0, -1000]);
-
-  useEffect(() => {
-    if (container.current) {
-      const topPosition = container.current.getBoundingClientRect().top;
-    }
-  }, []);
-
   return (
     <div className={styles.stickyContainer} ref={container}>
-      {/* <div
-        className={styles.parallaxContainer}
-        style={{ top: `calc(${HEIGHT * workIndex}px - ${0 * workIndex}rem)` }}
-        ref={container}
-      ></div> */}
-
       <Sticky
         top={0}
         onStateChange={handleStateChange}
         innerClass="workContainer"
         className="workContainer"
-        style={{ backgroundColor: "red" }}
       >
         <div className={styles.backgroundWrapper}>
           <div
             className={styles.backgroundContainer}
             style={{
-              top: `calc(-${100 * workIndex}% - ${0 * workIndex}rem)`,
+              top: `-${100 * workIndex}%`,
             }}
           >
             {backgrounds.map((background, index) => (
@@ -186,7 +58,7 @@ export default function Works({ setShowBall }) {
                 <ParallaxImage
                   key={index}
                   path={background.path}
-                  fixedPositions={bgCards}
+                  fixedPositions={background.background}
                   className={background.className}
                   startOffset={fixed + index * HEIGHT}
                   endOffset={fixed + (index + 1) * HEIGHT}
@@ -203,10 +75,10 @@ export default function Works({ setShowBall }) {
               top: `calc(-${100 * workIndex}% - ${4 * workIndex}rem)`,
             }}
           >
-            {logos.map((logo, index) => (
+            {titles.map((title) => (
               <>
-                <h2>{titles[index].title}</h2>
-                <h3>{titles[index].description}</h3>
+                <h2>{title.title}</h2>
+                <h3>{title.description}</h3>
               </>
             ))}
           </div>
@@ -220,33 +92,7 @@ export default function Works({ setShowBall }) {
           >
             {logos.map((logo, index) =>
               index === 0 ? (
-                <div
-                  className={classnames(
-                    styles.workTitle,
-                    styles.mouseBallHover
-                  )}
-                  onMouseEnter={() =>
-                    setShowBall({ show: true, text: "Scroll" })
-                  }
-                  onMouseLeave={() =>
-                    setShowBall({ show: false, text: "Scroll" })
-                  }
-                >
-                  <h2>
-                    <span
-                      style={{
-                        display: "block",
-                        fontSize: "8rem",
-                        letterSpacing: "0rem",
-                        fontWeight: "bolder",
-                        lineHeight: "-rem",
-                      }}
-                    >
-                      MOST RECENT
-                    </span>
-                    WORK
-                  </h2>
-                </div>
+                workTitle(setShowBall)
               ) : (
                 <video
                   className={styles.video}
@@ -254,9 +100,7 @@ export default function Works({ setShowBall }) {
                   loop
                   autoPlay
                   onMouseEnter={() => setShowBall({ show: true, text: "View" })}
-                  onMouseLeave={() =>
-                    setShowBall({ show: false, text: "View" })
-                  }
+                  onMouseLeave={() => setShowBall({ show: false, text: "" })}
                 >
                   <source src={`/videos/output2.mp4`} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -309,24 +153,23 @@ export default function Works({ setShowBall }) {
           ))}
         </div>
       </Sticky>
+    </div>
+  );
+}
 
-      {/* </div> */}
-      {/* <div className={styles.video} ref={elRef}>
-        <div style={{ zIndex: 1 }} className={styles.workTitle}>
-          <span>WORK</span>
+function workTitle(setShowBall) {
+  return (
+    <div
+      className={classnames(styles.workTitle, styles.mouseBallHover)}
+      onMouseEnter={() => setShowBall({ show: true, text: "Scroll" })}
+      onMouseLeave={() => setShowBall({ show: false, text: "Scroll" })}
+    >
+      <h2 style={{ position: "relative" }}>
+        <div className={classnames(intro.gradientText, styles.recentTitle)}>
+          RECENT
         </div>
-        {images.map((image, index) => (
-          <div className={styles.overview}>
-            <video muted loop autoPlay>
-              <source
-                src={`/videos/test-video-${index + 1}.mp4`}
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        ))}
-      </div> */}
+        <div>WORK</div>
+      </h2>
     </div>
   );
 }

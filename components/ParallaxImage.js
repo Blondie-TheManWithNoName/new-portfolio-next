@@ -24,22 +24,23 @@ const ParallaxImage = ({
 
   return (
     <motion.div style={{ y }} className={styles.background1}>
-      {fixedPositions.map((style, index) => (
-        <PathImage
-          image={
-            Array.isArray(path) ? path[index % path.length].src : path?.src
-          }
-          index={index}
-          startOffset={startOffset}
-          endOffset={endOffset}
-          scrollY={scrollY}
-          className={dynamicClass}
-          style={{
-            ...style.style,
-          }}
-          rotation={style.rotation}
-        />
-      ))}
+      {fixedPositions &&
+        fixedPositions.map((style, index) => (
+          <PathImage
+            image={
+              Array.isArray(path) ? path[index % path.length].src : path?.src
+            }
+            index={index}
+            startOffset={startOffset}
+            endOffset={endOffset}
+            scrollY={scrollY}
+            className={dynamicClass}
+            style={{
+              ...style.style,
+            }}
+            rotation={style.rotation}
+          />
+        ))}
     </motion.div>
   );
 };

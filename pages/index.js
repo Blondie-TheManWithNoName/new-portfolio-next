@@ -135,7 +135,6 @@ export default function Home() {
   const yPic = useTransform(scrollYProgress, [0, 1], [0, 2000]);
   const yText = useTransform(scrollYProgress, [0, 1], [0, 1000]);
   const height = useTransform(scrollYProgress, [0, 1], [400, 200]);
-  // console.log("y", scrollYProgress);
   return (
     <>
       <Head>
@@ -151,7 +150,7 @@ export default function Home() {
             onMouseLeave={() => setShowBall({ show: false, text: "Scroll" })}
           >
             <motion.div className={intro.introPic} style={{ y: yPic }}>
-              <img src="../images/test-11.png" alt="Noah" />
+              <img src="../images/hero.jpg" alt="Noah" />
             </motion.div>
             {/* <div className={intro.intro}> */}
             <motion.h1 className={intro.introText} style={{ y: yText }}>
@@ -272,7 +271,7 @@ export default function Home() {
         </section> */}
         <Works setShowBall={setShowBall} />
         <section
-          className={aboutme.aboutMe}
+          className={aboutme.contact}
           style={{ height: "200vh", marginTop: "20rem" }}
         >
           <div className={aboutme.title}>
