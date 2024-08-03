@@ -22,9 +22,6 @@ const ParallaxImage = ({
     [styles.bgCards]: className === "bgCards",
   });
 
-  console.log("className", className);
-  console.log("dynamicClass", dynamicClass);
-
   return (
     <motion.div style={{ y }} className={styles.background1}>
       {fixedPositions.map((style, index) => (
