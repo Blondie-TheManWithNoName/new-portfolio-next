@@ -32,6 +32,14 @@ import pathCard5 from "../public/images/background/card-path-5.svg";
 import pathCard6 from "../public/images/background/card-path-6.svg";
 import pathCard7 from "../public/images/background/card-path-7.svg";
 import pathCard8 from "../public/images/background/card-path-8.svg";
+import bike from "../public/images/background/bike.svg";
+import box from "../public/images/background/package-open.svg";
+import truck from "../public/images/background/truck-solid.svg";
+
+import kenken1 from "../public/images/background/KenKen/path1.svg";
+import kenken2 from "../public/images/background/KenKen/path2.svg";
+import kenken3 from "../public/images/background/KenKen/path3.svg";
+import kenken4 from "../public/images/background/KenKen/path4.svg";
 const pathCards = [
   pathCard1,
   pathCard2,
@@ -43,11 +51,14 @@ const pathCards = [
   pathCard8,
 ];
 
+const pathRecaders = [bike, box, truck];
+const pathKenKen = [kenken1, kenken2, kenken3, kenken4];
+
 const backgrounds = [
   { background: undefined, path: undefined, className: "" },
   { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
-  { background: bgCards, path: pathCards, className: "bgCards" },
-  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
+  { background: bgCards, path: pathRecaders, className: "backgroundImage" },
+  { background: bgTheogony, path: pathKenKen, className: "backgroundImage" },
   { background: bgCards, path: pathCards, className: "bgCards" },
   { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
   { background: bgCards, path: pathCards, className: "bgCards" },
@@ -79,9 +90,6 @@ const titles = [
   { title: "Snake II", description: "Description" },
   { title: "Card Mat", description: "Description" },
 ];
-
-// const videos = [video1, video2, video3, video4, video5, video6];
-// const images = ["Theogony", "test2", "test3", "test4", "test5", "test6"];
 
 const HEIGHT = 2000;
 
