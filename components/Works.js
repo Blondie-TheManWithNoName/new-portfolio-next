@@ -3,6 +3,7 @@ import styles from "../styles/work.module.scss";
 import Work from "./Work";
 import ParallaxImage from "./ParallaxImage";
 import useScrollPosition from "../hooks/useScrollPosition";
+import classnames from "classnames";
 
 import { FlatTree, motion, useScroll, useTransform } from "framer-motion";
 import Sticky from "react-stickynode";
@@ -20,20 +21,37 @@ import background2 from "../public/images/background/theogony-2.svg";
 import snake1 from "../public/images/background/snake-1.svg";
 import snake2 from "../public/images/background/snake-2.svg";
 
-const backgrounds = [
-  { background1: "", background2: "" },
-  { background1: background1, background2: background2 },
-  { background1: snake2, background2: snake2 },
-  { background1: background1, background2: background2 },
-  { background1: snake2, background2: snake2 },
-  { background1: background1, background2: background2 },
-  { background1: snake2, background2: snake2 },
+import { bgTheogony } from "./backgrounds/theogony";
+import pathTheogony from "../public/images/background/path.svg";
+import { bgCards } from "./backgrounds/cards";
+import pathCard1 from "../public/images/background/card-path-1.svg";
+import pathCard2 from "../public/images/background/card-path-2.svg";
+import pathCard3 from "../public/images/background/card-path-3.svg";
+import pathCard4 from "../public/images/background/card-path-4.svg";
+import pathCard5 from "../public/images/background/card-path-5.svg";
+import pathCard6 from "../public/images/background/card-path-6.svg";
+import pathCard7 from "../public/images/background/card-path-7.svg";
+import pathCard8 from "../public/images/background/card-path-8.svg";
+const pathCards = [
+  pathCard1,
+  pathCard2,
+  pathCard3,
+  pathCard4,
+  pathCard5,
+  pathCard6,
+  pathCard7,
+  pathCard8,
 ];
 
-import { fixedPositions1 } from "./backgrounds/theogony";
-import { fixedPositions2 } from "./backgrounds/cards";
-import path1 from "../public/images/background/path.svg";
-import path2 from "../public/images/background/card-path.svg";
+const backgrounds = [
+  { background: undefined, path: undefined, className: "" },
+  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
+  { background: bgCards, path: pathCards, className: "bgCards" },
+  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
+  { background: bgCards, path: pathCards, className: "bgCards" },
+  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
+  { background: bgCards, path: pathCards, className: "bgCards" },
+];
 
 // import test2 from "../public/images/test-pic-2.jpg";
 // import video1 from "../public/videos/test-video-1.mp4";
@@ -86,7 +104,7 @@ const images = [
 ];
 // const logos = [logo1, logo2];
 
-export default function Works({ lenis }) {
+export default function Works({ setShowBall }) {
   const elRef = useRef(null);
 
   const [imageSrc, setImageSrc] = useState(test2?.src);
@@ -103,7 +121,7 @@ export default function Works({ lenis }) {
   };
 
   useEffect(() => {
-    console.log("scrollY", scrollY, window.innerHeight + window.innerHeight);
+    // console.log("scrollY", scrollY, window.innerHeight + window.innerHeight);
     if (fixed) {
       if (scrollY - fixed >= HEIGHT * (workIndex + 1)) {
         setWorkIndex(workIndex + 1);
@@ -130,7 +148,6 @@ export default function Works({ lenis }) {
   useEffect(() => {
     if (container.current) {
       const topPosition = container.current.getBoundingClientRect().top;
-      console.log(topPosition);
     }
   }, []);
 
@@ -158,41 +175,15 @@ export default function Works({ lenis }) {
           >
             {backgrounds.map((background, index) => (
               <div className={styles.background}>
-                {/* <motion.div
-                  className={styles.background1}
-                  style={{
-                    backgroundImage: `url(${background.background1?.src})`,
-                    backgroundSize: "cover",
-                    y: index === workIndex ? yPics[index] : undefined,
-                    backgroundPosition: "center",
-                  }}
-                ></motion.div> */}
                 <ParallaxImage
                   key={index}
-                  path={index % 2 ? path1 : path2}
-                  fixedPositions={index % 2 ? fixedPositions1 : fixedPositions2}
-                  imageUrl={background.background1?.src}
+                  path={background.path}
+                  fixedPositions={bgCards}
+                  className={background.className}
                   startOffset={fixed + index * HEIGHT}
                   endOffset={fixed + (index + 1) * HEIGHT}
                   move={-500}
                 />
-                {/* <ParallaxImage
-                  key={index}
-                  imageUrl={background.background2?.src}
-                  startOffset={fixed + index * HEIGHT}
-                  endOffset={fixed + (index + 1) * HEIGHT}
-                  move={-800}
-                /> */}
-                {/* <motion.div
-                  className={styles.background1}
-                  style={{
-                    backgroundImage: `url(${background.background2?.src})`,
-                    backgroundSize: "cover",
-                    // y: yPic2,
-                    // backgroundSize: "100%",
-                    backgroundPosition: "center",
-                  }}
-                ></motion.div> */}
               </div>
             ))}
           </div>
@@ -221,11 +212,41 @@ export default function Works({ lenis }) {
           >
             {logos.map((logo, index) =>
               index === 0 ? (
-                <div className={styles.workTitle}>
-                  <h2>WORK</h2>
+                <div
+                  className={styles.workTitle}
+                  onMouseEnter={() =>
+                    setShowBall({ show: true, text: "Scroll" })
+                  }
+                  onMouseLeave={() =>
+                    setShowBall({ show: false, text: "Scroll" })
+                  }
+                >
+                  <h2>
+                    <span
+                      style={{
+                        display: "block",
+                        fontSize: "8rem",
+                        letterSpacing: "0rem",
+                        fontWeight: "bolder",
+                        lineHeight: "-rem",
+                      }}
+                    >
+                      MOST RECENT
+                    </span>
+                    WORK
+                  </h2>
                 </div>
               ) : (
-                <video className={styles.video} muted loop autoPlay>
+                <video
+                  className={styles.video}
+                  muted
+                  loop
+                  autoPlay
+                  onMouseEnter={() => setShowBall({ show: true, text: "View" })}
+                  onMouseLeave={() =>
+                    setShowBall({ show: false, text: "View" })
+                  }
+                >
                   <source
                     src={`/videos/test-video-${index}.mp4`}
                     type="video/mp4"

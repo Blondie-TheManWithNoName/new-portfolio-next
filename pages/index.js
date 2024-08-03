@@ -3,6 +3,7 @@ import intro from "../styles/intro.module.scss";
 import carousell from "../styles/carousell.module.scss";
 import aboutme from "../styles/aboutme.module.scss";
 import classnames from "classnames";
+import MouseBall from "../components/MouseBall";
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import {
@@ -128,6 +129,7 @@ export default function Home() {
     },
   };
 
+  const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
   const curveTransform = useTransform(scrollYProgress, [0, 1], [300, 600]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
   const yPic = useTransform(scrollYProgress, [0, 1], [0, 2000]);
@@ -141,8 +143,13 @@ export default function Home() {
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <main className={intro.main} ref={container}>
+        <MouseBall show={showBall} />
         <section className={intro.introSection}>
-          <motion.div className={intro.intro}>
+          <motion.div
+            className={intro.intro}
+            onMouseEnter={() => setShowBall({ show: true, text: "Hello" })}
+            onMouseLeave={() => setShowBall({ show: false, text: "Scroll" })}
+          >
             <motion.div className={intro.introPic} style={{ y: yPic }}>
               <img src="../images/test-11.png" alt="Noah" />
             </motion.div>
@@ -263,7 +270,7 @@ export default function Home() {
             <h2 className={intro.gradientText}>WORK</h2>
           </div>
         </section> */}
-        <Works />
+        <Works setShowBall={setShowBall} />
         <section
           className={aboutme.aboutMe}
           style={{ height: "200vh", marginTop: "20rem" }}

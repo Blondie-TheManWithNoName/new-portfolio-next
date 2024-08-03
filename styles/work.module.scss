@@ -184,10 +184,16 @@
     object-fit: cover;
     height: 60vh;
     width: 100%;
+    // cursor: pointer;
+
     box-shadow: 0px 2px 5px 2px rgba(28, 29, 32, 0.25);
 
     // box-shadow: 0px 0px 0px 20px rgba(28, 29, 32, 1);
   }
+}
+
+.video:hover {
+  cursor: pointer;
 }
 
 .workTitle {
@@ -200,6 +206,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 
 // .video {
@@ -376,4 +383,50 @@
   @extend .backgroundImage;
   border-radius: 1rem;
   box-shadow: 0px 2px 5px 2px rgba(28, 29, 32, 0.25);
+}
+
+.mouseBall {
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  // transition: all 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.4s cubic-bezier(0.34, 1, 0.64, 1);
+  overflow: hidden;
+  pointer-events: none;
+
+  div {
+    border-radius: 100%;
+    // background-image: linear-gradient(45deg, #0086d1, #af4261);
+    transition: all 0.4s cubic-bezier(0.34, 1, 0.64, 1);
+  }
+}
+
+.mouseBall2 {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: all 0.35s cubic-bezier(0.34, 1, 0.64, 1);
+
+  pointer-events: none;
+  // transition: all 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 11;
+
+  div {
+    overflow: hidden;
+    margin-bottom: 0.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.25rem;
+    transition: all 0.35s cubic-bezier(0.34, 1, 0.64, 1);
+  }
+}
+
+.textBall {
 }
