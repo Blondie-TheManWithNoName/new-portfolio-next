@@ -213,7 +213,10 @@ export default function Works({ setShowBall }) {
             {logos.map((logo, index) =>
               index === 0 ? (
                 <div
-                  className={styles.workTitle}
+                  className={classnames(
+                    styles.workTitle,
+                    styles.mouseBallHover
+                  )}
                   onMouseEnter={() =>
                     setShowBall({ show: true, text: "Scroll" })
                   }

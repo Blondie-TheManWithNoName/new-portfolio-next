@@ -11,7 +11,7 @@ export default function MouseBall({ show }) {
   const [text, setText] = useState("HOLA");
   const { x, y } = useMousePosition();
   const { width, height } = useWindowSize();
-  //   const scrollY = useScrollPosition();
+  const scrollY = useScrollPosition();
 
   useEffect(() => {
     setSize(show.show ? pixelSize : 0);
@@ -26,14 +26,14 @@ export default function MouseBall({ show }) {
     }
   }, [show]);
 
-  //   useEffect(() => {
-  //     // const elements = document.elementsFromPoint(x, y);
-  //     // const isHovered = elements.some((element) => {
-  //     //   //   element.closest(`.${styles.mouseBallContainer}`);
-  //     // });
-  //     // Update the hovered state
-  //     // setSize(pixelSize);
-  //   }, [scrollY]);
+  useEffect(() => {
+    const elements = document.elementsFromPoint(x, y);
+    const isHovered = elements.some((element) => {
+      element.closest(`.${styles.mouseBallContainer}`);
+    });
+    //   Update the hovered state
+    if (isHovered) setSize(pixelSize);
+  }, [scrollY]);
 
   return (
     <>
