@@ -190,7 +190,7 @@ export default function Works({ setShowBall }) {
                   className={background.className}
                   startOffset={fixed + index * HEIGHT}
                   endOffset={fixed + (index + 1) * HEIGHT}
-                  move={-500}
+                  move={-800}
                 />
               </div>
             ))}
@@ -258,10 +258,7 @@ export default function Works({ setShowBall }) {
                     setShowBall({ show: false, text: "View" })
                   }
                 >
-                  <source
-                    src={`/videos/test-video-${index}.mp4`}
-                    type="video/mp4"
-                  />
+                  <source src={`/videos/output2.mp4`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )
