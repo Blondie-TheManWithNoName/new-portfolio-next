@@ -53,6 +53,7 @@ export default function Home() {
   const [heightTop, setHeightTop] = useState({ top: 400, bottom: 400 });
   const [shadow, setShadow] = useState({ top: 0, bottom: 0 });
   const [heightBot, setHeightBot] = useState(0);
+  const [ballAnimation, setBallAnimation] = useState(true);
   const [x, setX] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -80,6 +81,7 @@ export default function Home() {
     };
   }, []);
 
+  const ballRef = useRef(null);
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -87,6 +89,10 @@ export default function Home() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
+    setTimeout(() => {
+      setBallAnimation(false);
+    }, 3000);
 
     requestAnimationFrame(raf);
 
@@ -103,7 +109,7 @@ export default function Home() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.125, delayChildren: 2.75 },
+      transition: { staggerChildren: 0.125, delayChildren: 2 },
     },
   };
 
@@ -133,8 +139,8 @@ export default function Home() {
   const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
   const curveTransform = useTransform(scrollYProgress, [0, 1], [300, 600]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
-  const yPic = useTransform(scrollYProgress, [0, 1], [0, 2000]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, 1000]);
+  const yPic = useTransform(scrollYProgress, [0, 1], [0, 5000]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 3000]);
   const height = useTransform(scrollYProgress, [0, 1], [400, 200]);
   return (
     <>
@@ -143,8 +149,15 @@ export default function Home() {
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <main className={intro.main} ref={container}>
-        <MouseBall show={showBall} />
+        <MouseBall
+          show={showBall}
+          ballAnimation={ballAnimation}
+          xStartProp={264}
+          yStartProp={436}
+        />
+
         <section className={intro.introSection}>
+          <BallAnimation ref={ballRef} />
           <motion.div
             className={intro.intro}
             onMouseEnter={() => setShowBall({ show: true, text: "Hello" })}
@@ -160,8 +173,12 @@ export default function Home() {
                 initial="hidden"
                 animate="visible"
               >
-                <div className={intro.imA}>
-                  <BallAnimation />
+                <div className={intro.indented}>
+                  {/* {ballAnimation ? (
+                    <BallAnimation ref={ballRef} />
+                  ) : (
+                    <div></div>
+                  )} */}
 
                   <motion.p className={intro.backText} variants={textAnimation}>
                     I'm a

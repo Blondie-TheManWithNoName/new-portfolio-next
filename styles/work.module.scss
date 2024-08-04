@@ -282,12 +282,14 @@
 }
 
 .ballAnimation {
+  position: absolute;
   z-index: 6;
   display: grid;
   align-content: center;
   justify-content: center;
-  width: 75px;
-  height: 75px;
+  width: 1px;
+  height: 1px;
+  top: 46%;
 }
 .animatedBall {
   // margin-left: 2rem;
