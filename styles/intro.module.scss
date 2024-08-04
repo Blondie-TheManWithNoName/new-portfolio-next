@@ -13,6 +13,7 @@
 .intro {
   height: 100%;
   display: grid;
+  position: relative;
   grid-template-columns: 14% 1fr 1fr 1fr;
   grid-template-rows: 13em auto 3em auto 1fr 1rem;
 
@@ -30,6 +31,12 @@
   .indented {
     margin-left: 45%;
   }
+}
+
+.imA {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .introText {

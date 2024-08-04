@@ -15,6 +15,7 @@ import {
   delay,
 } from "framer-motion";
 import Works from "../components/Works";
+import BallAnimation from "../components/BallAnimation";
 
 function getHeight(scroll, windowHeight) {
   // Top
@@ -102,7 +103,7 @@ export default function Home() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.125, delayChildren: 0.25 },
+      transition: { staggerChildren: 0.125, delayChildren: 2.75 },
     },
   };
 
@@ -159,13 +160,9 @@ export default function Home() {
                 initial="hidden"
                 animate="visible"
               >
-                <div
-                  style={{
-                    overflow: "hidden",
-                    width: "fit-content",
-                  }}
-                  className={intro.indented}
-                >
+                <div className={intro.imA}>
+                  <BallAnimation />
+
                   <motion.p className={intro.backText} variants={textAnimation}>
                     I'm a
                   </motion.p>
