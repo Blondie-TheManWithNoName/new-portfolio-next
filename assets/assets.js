@@ -7,7 +7,7 @@ import logo4 from "../public/images/logos/kenken.svg";
 import logo5 from "../public/images/logos/snake_two.svg";
 import logo6 from "../public/images/logos/cards.svg";
 
-export const logos = [house, logo1, logo2, logo3, logo4, logo5, logo6];
+export const logos = [house, logo1, logo2, logo4, logo6, logo5];
 
 ///////////////////
 // Background Imports
@@ -58,20 +58,23 @@ export const backgrounds = [
 
 export const titles = [
   { title: "⠀", description: "⠀" },
-  { title: "Theogony", description: "Greek Gods Dynamic Family Tree" },
-  { title: "Es Recader", description: "Description" },
-  { title: "Theogony API", description: "Description" },
-  { title: "Ken Ken", description: "Description" },
-  { title: "Snake II", description: "Description" },
+  { title: "Theogony", description: "Greek Gods Family Tree API" },
+  {
+    title: "Es Recader",
+    description: "Landing webpage for a delivery business",
+  },
+  // { title: "Theogony API", description: "Description" },
+  { title: "Ken Ken", description: "App to play, generate, solve KenKens" },
   { title: "Card Mat", description: "Description" },
+  { title: "Dev Tools", description: "Description" },
 ];
 
 export const skills = [
   ["", "", "", "", "", "", "", ""],
-  ["", "typescript", "html", "sass", "react", "figma", "", ""],
-  ["", "javascript", "html", "tailwind", "nextjs", "figma", "", ""],
-  ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
-  ["", "java", "idea", "figma", "gitlab", "", "", ""],
-  ["", "javascript", "html", "css", "git", "", "", ""],
-  ["", "javascript", "html", "css", "git", "nodejs", "express", ""],
+  ["typescript", "nodejs", "express", "mysql", "aws", "", ""],
+  ["react", "nextjs", "tailwind", "svg", "figma", "", ""],
+  // ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
+  ["java", "idea", "figma", "git", "", "", ""],
+  ["javascript", "html", "css", "nodejs", "socketio", ""],
+  ["typescript", "nodejs", "nestjs", "jwt", "dbeaver", "", "", ""],
 ];

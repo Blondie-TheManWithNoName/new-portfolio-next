@@ -123,7 +123,8 @@ export default function Works({ setShowBall }) {
                   skills[indexWork][indexSkills] !== "" ? (
                     <img
                       key={`${indexWork}-${indexSkills}`}
-                      src={`https://skillicons.dev/icons?i=${skills[indexWork][indexSkills]}`}
+                      // src={`/skills/aws.svg`}
+                      src={`../skills/${skills[indexWork][indexSkills]}.svg`}
                       alt={`Skill icon ${indexWork}-${indexSkills}`}
                     />
                   ) : (
