@@ -53,8 +53,12 @@ export default function Home() {
   const [heightTop, setHeightTop] = useState({ top: 400, bottom: 400 });
   const [shadow, setShadow] = useState({ top: 0, bottom: 0 });
   const [heightBot, setHeightBot] = useState(0);
-  const [ballAnimation, setBallAnimation] = useState(true);
+  const [ballAnimation, setBallAnimation] = useState(false);
   const [x, setX] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -90,9 +94,9 @@ export default function Home() {
       requestAnimationFrame(raf);
     }
 
-    setTimeout(() => {
-      setBallAnimation(false);
-    }, 3000);
+    // setTimeout(() => {
+    //   setBallAnimation(false);
+    // }, 3000);
 
     requestAnimationFrame(raf);
 
@@ -152,16 +156,16 @@ export default function Home() {
         <MouseBall
           show={showBall}
           ballAnimation={ballAnimation}
-          xStartProp={264}
-          yStartProp={436}
+          xStartProp={0}
+          yStartProp={0}
         />
 
         <section className={intro.introSection}>
-          <BallAnimation ref={ballRef} />
+          {/* <BallAnimation ref={ballRef} /> */}
           <motion.div
             className={intro.intro}
             onMouseEnter={() => setShowBall({ show: true, text: "Hello" })}
-            onMouseLeave={() => setShowBall({ show: false, text: "Scroll" })}
+            onMouseLeave={() => setShowBall({ show: false, text: "" })}
           >
             <motion.div className={intro.introPic} style={{ y: yPic }}>
               <img src="../images/hero.jpg" alt="Noah" />
