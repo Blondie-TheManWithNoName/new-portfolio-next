@@ -143,8 +143,8 @@ export default function Home() {
   const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
   const curveTransform = useTransform(scrollYProgress, [0, 1], [300, 600]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
-  const yPic = useTransform(scrollYProgress, [0, 1], [0, 5000]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, 3000]);
+  const yPic = useTransform(scrollYProgress, [0, 1], [0, 4000]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 2000]);
   const height = useTransform(scrollYProgress, [0, 1], [400, 200]);
   return (
     <>
