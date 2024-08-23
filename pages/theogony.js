@@ -75,6 +75,38 @@ function Theogony() {
             </div>
           </div>
         </div>
+        <div className={styles.workInfo}>
+          <h3>Why</h3>
+          <h3>Stack</h3>
+
+          <div className={styles.line}></div>
+          <div className={styles.line}></div>
+
+          <div className={styles.text}>
+            <p>
+              This is a personal project where I put myself a the challenge to
+              create a public API for the community. As I couldn't find too many
+              playful APIs for people to make a a code project.
+            </p>
+            <p style={{ marginTop: "2vh" }}>
+              This is a personal project where I put myself a the challenge to
+              create a public API for the community. As I couldn't find too many
+              playful APIs for people to make a a code project.
+            </p>
+          </div>
+          <div className={styles.pills}>
+            <TechPill name="TypeScript" color="#3178C6" />
+            <TechPill name="NodeJS" color="#68A063" />
+            <TechPill name="ExpressJS" color="#FF9900" />
+            <TechPill name="MySQL" color="#00758F" />
+            <TechPill name="REST" color="#FF9900" />
+            <TechPill name="TypeORM" color="#FF9900" />
+            <TechPill name="AWS" color="#FF9900" />
+            <TechPill name="DBeaver" color="#FF9900" />
+            <TechPill name="CSR Pattern" color="#FF9900" />
+            <TechPill name="Best Practices" color="#FF9900" />
+          </div>
+        </div>
       </section>
     </main>
   );
