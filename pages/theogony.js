@@ -63,6 +63,18 @@ function Theogony() {
             </a>
           </div>
         </div>
+
+        <div className={styles.mockupContainer}>
+          <div className={styles.mockupLg}>
+            <Image src={mockupLg} className={styles.mockupLgImage} />
+            <div>
+              <video muted loop autoPlay>
+                <source src={`/videos/output2.mp4`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
