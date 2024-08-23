@@ -27,6 +27,43 @@ function Theogony() {
         <h1 className={classNames(styles.title, "gradientText")}>Theogony</h1>
         <h2 className={styles.subtitle}>GREEK GODS FAMILY TREE API</h2>
       </motion.div>
+      <section>
+        <motion.p className={styles.overview} ref={containerTextRef}>
+          <i>Theogony API</i> is a REST API that gives you the possibility to
+          retrieve information about Greek gods and the relationships and
+          partnerships they had. This way, e.g., you are able to trace the
+          entire Greek Gods Family Tree from a child to its great, great,
+          great... grandfather.
+        </motion.p>
+        <div className={styles.workInfo}>
+          {/* <h3>Stack</h3> */}
+          <h3>Role</h3>
+          <h3>Page</h3>
+
+          {/* <div className={styles.line}></div> */}
+          <div className={styles.line}></div>
+          <div className={styles.line}></div>
+
+          {/* <div className={styles.pills}>
+            <TechPill name="TypeScript" color="#3178C6" />
+            <TechPill name="NodeJS" color="#68A063" />
+            <TechPill name="MySQL" color="#00758F" />
+            <TechPill name="AWS" color="#FF9900" />
+          </div> */}
+          <div className={styles.info}>
+            <p>Development & Deploy</p>
+          </div>
+          <div className={styles.info}>
+            <a
+              href="http://theogonia.net"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              theogonia.net
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
