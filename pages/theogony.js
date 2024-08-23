@@ -8,7 +8,14 @@ import TechPill from "../components/TechPill";
 import { useScroll, useTransform, motion } from "framer-motion";
 
 function Theogony() {
+  const containerRef = useRef(null);
   const containerTextRef = useRef(null);
+
+  const { scrollYProgress: scrollYProgressContainer } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
   const { scrollYProgress: scrollYProgressText } = useScroll({
     target: containerTextRef,
     offset: ["start end", "end start"],
@@ -20,6 +27,12 @@ function Theogony() {
     [0, 1],
     [100, -100]
   );
+  const transformLeftY = useTransform(
+    scrollYProgressContainer,
+    [0, 1],
+    [-100, 100]
+  );
+
   return (
     <main className={styles.main}>
       <motion.div className={styles.intro} style={{ y: transformTextY }}>
@@ -107,6 +120,10 @@ function Theogony() {
             <TechPill name="Best Practices" color="#FF9900" />
           </div>
         </div>
+        <motion.div className={styles.phoneMockups} ref={containerRef}>
+          <motion.div style={{ y: transformRightY }}></motion.div>
+          <motion.div style={{ y: transformLeftY }}></motion.div>
+        </motion.div>
       </section>
     </main>
   );
