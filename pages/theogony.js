@@ -50,8 +50,8 @@ function Theogony() {
         </motion.p>
         <div className={styles.workInfo}>
           {/* <h3>Stack</h3> */}
-          <h3>Role</h3>
-          <h3>Page</h3>
+          <h3 className={styles.smallTitle}>Role</h3>
+          <h3 className={styles.smallTitle}>Page</h3>
 
           {/* <div className={styles.line}></div> */}
           <div className={styles.line}></div>
@@ -89,8 +89,8 @@ function Theogony() {
           </div>
         </div>
         <div className={styles.workInfo}>
-          <h3>Why</h3>
-          <h3>Stack</h3>
+          <h3 className={styles.smallTitle}>Why</h3>
+          <h3 className={styles.smallTitle}>Stack</h3>
 
           <div className={styles.line}></div>
           <div className={styles.line}></div>
@@ -125,6 +125,26 @@ function Theogony() {
           <motion.div style={{ y: transformLeftY }}></motion.div>
         </motion.div>
       </section>
+      <footer className={styles.footer}>
+        <div className={styles.nextCaseContainer}>
+          <div className={styles.nextCaseTitle}>
+            <h3 className={classNames(styles.smallTitle)}>Next Case</h3>
+          </div>
+          <div className={styles.nextContainer}>
+            <div className={styles.logoNextContainer}>
+              <Image src={logo1} className={styles.logoNext} alt="Logo" />
+            </div>
+          </div>
+          <h3 className={styles.nextCase}>es Recader</h3>
+          <div
+            className={styles.line}
+            style={{ position: "absolute", top: "93%" }}
+          ></div>
+          {/* <div className={styles.nextCaseOverview}></div> */}
+
+          {/* <div className={styles.background}></div> */}
+        </div>
+      </footer>
     </main>
   );
 }
