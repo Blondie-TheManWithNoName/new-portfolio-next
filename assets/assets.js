@@ -4,7 +4,7 @@ import logo1 from "../public/images/logos/theogony.svg";
 import logo2 from "../public/images/logos/es_recader.svg";
 import logo3 from "../public/images/logos/theogony_api.svg";
 import logo4 from "../public/images/logos/kenken.svg";
-import logo5 from "../public/images/logos/snake_two.svg";
+import logo5 from "../public/images/logos/devtools.svg";
 import logo6 from "../public/images/logos/cards.svg";
 
 export const logos = [house, logo1, logo2, logo4, logo6, logo5];
@@ -64,9 +64,15 @@ export const titles = [
     description: "Landing webpage for a delivery business",
   },
   // { title: "Theogony API", description: "Description" },
-  { title: "Ken Ken", description: "App to play, generate, solve KenKens" },
-  { title: "Card Mat", description: "Description" },
-  { title: "Dev Tools", description: "Description" },
+  {
+    title: "Ken Ken",
+    description: "Desktop App to play, generate and solve KenKens",
+  },
+  { title: "Card Mat", description: "Web App to play poker cards online" },
+  {
+    title: "Dev Tools",
+    description: "Website to post and find developers tools",
+  },
 ];
 
 export const skills = [
@@ -74,7 +80,7 @@ export const skills = [
   ["typescript", "nodejs", "express", "mysql", "aws", "", ""],
   ["react", "nextjs", "tailwind", "svg", "figma", "", ""],
   // ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
-  ["java", "idea", "figma", "git", "", "", ""],
+  ["java", "idea", "figma", "uml", "git", "", ""],
   ["javascript", "html", "css", "nodejs", "socketio", ""],
-  ["typescript", "nodejs", "nestjs", "jwt", "dbeaver", "", "", ""],
+  ["typescript", "nestjs", "jwt", "mysql", "dbeaver", "", "", ""],
 ];
