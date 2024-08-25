@@ -54,7 +54,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
     scrollToBottom();
 
     setTimeout(() => {
-      //   router.push(nextWork.url);
+      router.push(nextWork.url);
     }, 400);
   };
 
@@ -208,15 +208,16 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
         </motion.div>
       </section>
       <footer className={styles.footer}>
+        <div className={styles.nextCaseTitle}>
+          <h3 className={styles.smallTitle}>Next Case</h3>
+        </div>
         <div
           className={styles.nextCaseContainer}
           onMouseEnter={() => setShowBall({ show: true, text: "Check" })}
           onMouseLeave={() => setShowBall({ show: false, text: "" })}
           onClick={handleTransitionOut}
+          style={{ marginTop: transitionIn ? "10vh" : "20vh" }}
         >
-          <div className={styles.nextCaseTitle}>
-            <h3 className={styles.smallTitle}>Next Case</h3>
-          </div>
           <div className={styles.nextContainer}>
             <div
               className={classNames(styles.logoNextContainer, {
