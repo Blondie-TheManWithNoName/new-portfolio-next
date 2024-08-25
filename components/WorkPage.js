@@ -10,7 +10,7 @@ import Lenis from "lenis";
 import MouseBall from "../components/MouseBall";
 import { useRouter } from "next/router";
 
-function WorkPage({ work, texts, video, nextWork }) {
+function WorkPage({ work, texts, video, nextWork, pills }) {
   const router = useRouter();
   // Lenis
   useEffect(() => {
@@ -195,16 +195,9 @@ function WorkPage({ work, texts, video, nextWork }) {
             <p>{texts.why}</p>
           </div>
           <div className={styles.pills}>
-            <TechPill name="TypeScript" color="#3178C6" />
-            <TechPill name="NodeJS" color="#68A063" />
-            <TechPill name="ExpressJS" color="#FF9900" />
-            <TechPill name="MySQL" color="#00758F" />
-            <TechPill name="REST" color="#FF9900" />
-            <TechPill name="TypeORM" color="#FF9900" />
-            <TechPill name="AWS" color="#FF9900" />
-            <TechPill name="DBeaver" color="#FF9900" />
-            <TechPill name="CSR Pattern" color="#FF9900" />
-            <TechPill name="Best Practices" color="#FF9900" />
+            {pills.map((pill) => (
+              <TechPill key={pill} name={pill} />
+            ))}
           </div>
         </div>
         <motion.div className={styles.phoneMockups} ref={containerRef}>
@@ -220,7 +213,7 @@ function WorkPage({ work, texts, video, nextWork }) {
           onClick={handleTransitionOut}
         >
           <div className={styles.nextCaseTitle}>
-            <h3 className={classNames(styles.smallTitle)}>Next Case</h3>
+            <h3 className={styles.smallTitle}>Next Case</h3>
           </div>
           <div className={styles.nextContainer}>
             <div
