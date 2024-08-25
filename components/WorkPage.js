@@ -9,6 +9,7 @@ import { useScroll, useTransform, motion, animate } from "framer-motion";
 import Lenis from "lenis";
 import MouseBall from "../components/MouseBall";
 import { useRouter } from "next/router";
+import { useCurrentTime } from "../hooks/useCurrentTime";
 
 function WorkPage({ work, texts, video, nextWork, pills }) {
   const router = useRouter();
@@ -29,7 +30,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, []);
 
   const scrollToBottom = () => {
@@ -53,7 +54,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
     scrollToBottom();
 
     setTimeout(() => {
-      router.push(nextWork.url);
+      //   router.push(nextWork.url);
     }, 400);
   };
 
@@ -61,6 +62,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
   const containerTextRef = useRef(null);
   const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
   const [transitionIn, setTransitionIn] = useState(false);
+  const currentTime = useCurrentTime();
 
   const bottomRef = useRef(null);
 
@@ -243,6 +245,35 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
           {/* <div className={styles.nextCaseOverview}></div> */}
 
           {/* <div className={styles.background}></div> */}
+        </div>
+        <div className={styles.footerFooter}>
+          <div className={styles.footerSection}>
+            <p className={classNames(styles.smallTitle, styles.footerText)}>
+              Local Time
+            </p>{" "}
+            <p className={classNames(styles.footerText)}>{currentTime}</p>
+          </div>
+          <div className={styles.footerSection}>
+            <p className={classNames(styles.smallTitle, styles.footerText)}>
+              Socials
+            </p>{" "}
+            <a
+              className={classNames(styles.footerText)}
+              href="https://www.linkedin.com/in/nbguardiola/"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
+            <a
+              className={classNames(styles.footerText)}
+              href="https://github.com/Blondie-TheManWithNoName"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
       </footer>
     </main>

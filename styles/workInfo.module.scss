@@ -271,4 +271,19 @@
 .footerSection {
   display: grid;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  margin-inline: 2.25vw;
+  column-gap: 2vw;
+}
+.footerSection > :first-child {
+  grid-column: span 2;
+  color: gray;
+}
+
+.footerFooter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2vh;
 }
