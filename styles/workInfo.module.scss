@@ -15,20 +15,28 @@
   padding-top: 15vh;
 }
 
+.titleContainer {
+  position: relative;
+  margin-top: 1.5vw;
+}
 .title {
   font-size: 8vw;
   text-transform: uppercase;
+  line-height: 1;
   font-family: "Poppins", sans-serif;
   letter-spacing: -0.4vw;
   padding-right: 0.4vw;
   color: #1c1d20;
 }
 
+.subtitleContainer {
+  position: relative;
+  margin-top: -1.5vw;
+}
 .subtitle {
   font-size: 3vw;
   text-transform: uppercase;
   letter-spacing: -0.2vw;
-  margin-top: -3vw;
   color: #1c1d20;
 }
 

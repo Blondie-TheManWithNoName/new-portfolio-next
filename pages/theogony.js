@@ -67,6 +67,29 @@ function Theogony() {
     [-100, 100]
   );
 
+  const textAnimation = {
+    initial: {
+      opacity: 0,
+      y: "100%",
+      transition: {
+        type: "spring",
+        damping: 250,
+        stiffness: 2000,
+        mass: 20,
+      },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 250,
+        stiffness: 2000,
+        mass: 20,
+      },
+    },
+  };
+
   return (
     <main className={styles.main}>
       <MouseBall
@@ -77,8 +100,26 @@ function Theogony() {
       />
       <motion.div className={styles.intro} style={{ y: transformTextY }}>
         <Image src={logo1} className={styles.logo} alt="Logo" priority />
-        <h1 className={classNames(styles.title, "gradientText")}>Theogony</h1>
-        <h2 className={styles.subtitle}>GREEK GODS FAMILY TREE API</h2>
+        <div className={styles.titleContainer}>
+          <motion.h1
+            className={classNames(styles.title, "gradientText")}
+            variants={textAnimation}
+            initial="initial"
+            animate="animate"
+          >
+            Theogony
+          </motion.h1>
+        </div>
+        <div className={styles.subtitleContainer}>
+          <motion.h2
+            className={styles.subtitle}
+            variants={textAnimation}
+            initial="initial"
+            animate="animate"
+          >
+            GREEK GODS FAMILY TREE API
+          </motion.h2>
+        </div>
       </motion.div>
       <section>
         <motion.p className={styles.overview} ref={containerTextRef}>
