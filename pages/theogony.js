@@ -1,4 +1,3 @@
-import React, { useRef, useEffect } from "react";
 import styles from "../styles/workInfo.module.scss";
 import classNames from "classnames";
 import logo1 from "../public/images/logos/theogony.svg";
@@ -7,8 +6,11 @@ import Image from "next/image";
 import TechPill from "../components/TechPill";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "lenis";
+import MouseBall from "../components/MouseBall";
+import { useRouter } from "next/router";
 
 function Theogony() {
+  const router = useRouter();
   // Lenis
   useEffect(() => {
     const lenis = new Lenis();
@@ -27,6 +29,7 @@ function Theogony() {
 
   const containerRef = useRef(null);
   const containerTextRef = useRef(null);
+  const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
 
   const { scrollYProgress: scrollYProgressContainer } = useScroll({
     target: containerRef,
@@ -52,6 +55,12 @@ function Theogony() {
 
   return (
     <main className={styles.main}>
+      <MouseBall
+        show={showBall}
+        ballAnimation={false}
+        xStartProp={0}
+        yStartProp={0}
+      />
       <motion.div className={styles.intro} style={{ y: transformTextY }}>
         <Image src={logo1} className={styles.logo} alt="Logo" />
         <h1 className={classNames(styles.title, "gradientText")}>Theogony</h1>
@@ -148,9 +157,20 @@ function Theogony() {
             <h3 className={classNames(styles.smallTitle)}>Next Case</h3>
           </div>
           <div className={styles.nextContainer}>
-            <div className={styles.logoNextContainer}>
+            <div
+              className={classNames(styles.logoNextContainer, {
+                [styles.logoNextContainerTransition]: transitionIn,
+              })}
+            >
               <Image src={logo1} className={styles.logoNext} alt="Logo" />
             </div>
+            <div
+              className={styles.backgroundTransition}
+              style={{
+                width: transitionIn ? "150vw" : "6vw",
+                height: transitionIn ? "150vw" : "6vw",
+              }}
+            ></div>
           </div>
           <h3 className={styles.nextCase}>es Recader</h3>
           <div

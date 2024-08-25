@@ -12,7 +12,7 @@ export default function MouseBall({
   ballAnimation,
 }) {
   const pixelSize = 75;
-  const [size, setSize] = useState(pixelSize);
+  const [size, setSize] = useState(ballAnimation ? pixelSize : 0);
   const [text, setText] = useState("Hello");
   const [animation, setAnimation] = useState(true);
   const [endAnimation, setEndAnimation] = useState(false);
@@ -24,8 +24,7 @@ export default function MouseBall({
   const scrollY = useScrollPosition();
 
   useEffect(() => {
-    console.log("!ballAnimation", !ballAnimation);
-    if (!ballAnimation && x !== 0) {
+    if (x !== 0) {
       setSize(show.show ? pixelSize : 0);
       if (show.text !== text) {
         setSize(0);
@@ -36,9 +35,10 @@ export default function MouseBall({
         }, 150);
       }
     }
-  }, [show, ballAnimation]);
+  }, [show]);
 
   useEffect(() => {
+    if (!ballAnimation) setAnimation(false);
     setTimeout(() => {
       setEndAnimation(true);
     }, 3000);
@@ -63,7 +63,7 @@ export default function MouseBall({
 
   return (
     <>
-      {!ballAnimation && (
+      {
         <motion.div
           className={styles.mouseBall}
           style={{
@@ -94,16 +94,15 @@ export default function MouseBall({
         >
           <motion.div
             initial={{
-              width: "3000px",
-              height: "3000px",
-              fontSize: "2rem",
-              backgroundImage:
-                "linear-gradient(400deg, #1c1d20 50%, #0086d1 150%, #af4261 200%)",
+              width: ballAnimation ? "3000px" : size,
+              height: ballAnimation ? "3000px" : size,
+              backgroundImage: ballAnimation
+                ? "linear-gradient(400deg, #1c1d20 50%, #0086d1 150%, #af4261 200%)"
+                : "linear-gradient(45deg,#1c1d20 -100%, #0086d1 0%, #af4261 100%)",
             }}
             animate={{
               width: size,
               height: size,
-              fontSize: "1.3rem",
               backgroundImage:
                 "linear-gradient(45deg,#1c1d20 -100%, #0086d1 0%, #af4261 100%)",
               transition: {
@@ -141,9 +140,9 @@ export default function MouseBall({
             }}
           ></motion.div>
         </motion.div>
-      )}
+      }
 
-      {!ballAnimation && (
+      {
         <motion.div
           className={styles.mouseBall2}
           style={{
@@ -183,7 +182,7 @@ export default function MouseBall({
             }}
             initial={{
               opacity: 0,
-              fontSize: "5rem",
+              fontSize: ballAnimation ? "5rem" : "1.25rem",
             }}
             animate={{
               opacity: size > 0 ? 1 : 0,
@@ -201,7 +200,7 @@ export default function MouseBall({
             {text}
           </motion.div>
         </motion.div>
-      )}
+      }
     </>
   );
 }

@@ -155,7 +155,7 @@ export default function Home() {
       <main className={intro.main} ref={container}>
         <MouseBall
           show={showBall}
-          ballAnimation={ballAnimation}
+          ballAnimation={true}
           xStartProp={0}
           yStartProp={0}
         />
