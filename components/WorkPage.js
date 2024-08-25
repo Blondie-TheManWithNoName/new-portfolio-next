@@ -165,11 +165,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
             <p>{texts.role}</p>
           </div>
           <div className={styles.info}>
-            <a
-              href="http://theogonia.net"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={`http://${texts.page}/`} target="_blank" rel="noopener">
               {texts.page}
             </a>
           </div>
