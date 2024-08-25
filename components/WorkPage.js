@@ -32,10 +32,25 @@ function WorkPage({ work, texts, video, nextWork }) {
     window.scrollTo(0, 0);
   }, []);
 
+  const scrollToBottom = () => {
+    const scrollToY =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    animate(window.scrollY, scrollToY, {
+      duration: 0.4,
+      ease: [0.33, 1, 0.68, 1],
+      //   ease: [0.42, 0, 0.58, 1],
+      onUpdate: (latest) => {
+        window.scrollTo(0, latest);
+      },
+    });
+  };
 
   const handleTransitionOut = () => {
     setTransitionIn(true);
     setShowBall(false);
+    // bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollToBottom();
 
     setTimeout(() => {
       router.push(nextWork.url);
