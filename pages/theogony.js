@@ -6,8 +6,25 @@ import mockupLg from "../public/images/mockup-lg.png";
 import Image from "next/image";
 import TechPill from "../components/TechPill";
 import { useScroll, useTransform, motion } from "framer-motion";
+import Lenis from "lenis";
 
 function Theogony() {
+  // Lenis
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   const containerRef = useRef(null);
   const containerTextRef = useRef(null);
 
