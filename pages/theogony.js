@@ -1,3 +1,4 @@
+import React, { useRef, useEffect, useState } from "react";
 import styles from "../styles/workInfo.module.scss";
 import classNames from "classnames";
 import logo1 from "../public/images/logos/theogony.svg";
@@ -27,9 +28,22 @@ function Theogony() {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleTransitionOut = () => {
+    setTransitionIn(true);
+    setShowBall(false);
+    setTimeout(() => {
+      router.push("/theogony2");
+    }, 400);
+  };
+
   const containerRef = useRef(null);
   const containerTextRef = useRef(null);
   const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
+  const [transitionIn, setTransitionIn] = useState(false);
 
   const { scrollYProgress: scrollYProgressContainer } = useScroll({
     target: containerRef,
@@ -62,7 +76,7 @@ function Theogony() {
         yStartProp={0}
       />
       <motion.div className={styles.intro} style={{ y: transformTextY }}>
-        <Image src={logo1} className={styles.logo} alt="Logo" />
+        <Image src={logo1} className={styles.logo} alt="Logo" priority />
         <h1 className={classNames(styles.title, "gradientText")}>Theogony</h1>
         <h2 className={styles.subtitle}>GREEK GODS FAMILY TREE API</h2>
       </motion.div>
@@ -152,7 +166,12 @@ function Theogony() {
         </motion.div>
       </section>
       <footer className={styles.footer}>
-        <div className={styles.nextCaseContainer}>
+        <div
+          className={styles.nextCaseContainer}
+          onMouseEnter={() => setShowBall({ show: true, text: "Check" })}
+          onMouseLeave={() => setShowBall({ show: false, text: "" })}
+          onClick={handleTransitionOut}
+        >
           <div className={styles.nextCaseTitle}>
             <h3 className={classNames(styles.smallTitle)}>Next Case</h3>
           </div>
