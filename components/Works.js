@@ -4,6 +4,7 @@ import intro from "../styles/intro.module.scss";
 import ParallaxImage from "./ParallaxImage";
 import useScrollPosition from "../hooks/useScrollPosition";
 import classnames from "classnames";
+import { useRouter } from "next/router";
 
 import { motion } from "framer-motion";
 import Sticky from "react-stickynode";
@@ -13,6 +14,7 @@ export default function Works({ setShowBall }) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
   const HEIGHT = 2000;
+  const router = useRouter();
 
   const scrollY = useScrollPosition();
   const handleStateChange = (status) => {
@@ -101,6 +103,7 @@ export default function Works({ setShowBall }) {
                   autoPlay
                   onMouseEnter={() => setShowBall({ show: true, text: "View" })}
                   onMouseLeave={() => setShowBall({ show: false, text: "" })}
+                  onClick={() => router.push("theogony")}
                 >
                   <source src={`/videos/output2.mp4`} type="video/mp4" />
                   Your browser does not support the video tag.
