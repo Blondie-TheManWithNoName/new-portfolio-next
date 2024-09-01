@@ -58,6 +58,20 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (typeof window !== "undefined") {
+      // document.body.style.height = "100vh";
+
+      // Unblock scrolling after 3 seconds
+      const timer = setTimeout(() => {
+        document.body.style.height = "auto";
+      }, 2000);
+
+      // Cleanup function to ensure scrolling is restored if the component unmounts
+      return () => {
+        clearTimeout(timer);
+        document.body.style.height = "auto";
+      };
+    }
   }, []);
 
   const { scrollYProgress } = useScroll({

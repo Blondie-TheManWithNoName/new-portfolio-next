@@ -41,7 +41,7 @@ export default function MouseBall({
     if (!ballAnimation) setAnimation(false);
     setTimeout(() => {
       setEndAnimation(true);
-    }, 3000);
+    }, 2500);
 
     return () => {};
   }, []);
@@ -60,6 +60,9 @@ export default function MouseBall({
     //   Update the hovered state
     if (isHovered) setSize(pixelSize);
   }, [scrollY]);
+  useEffect(() => {
+    console.log("width", width);
+  }, [width]);
 
   return (
     <>
