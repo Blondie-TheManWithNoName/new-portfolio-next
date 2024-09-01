@@ -2,17 +2,18 @@
 import house from "../public/images/logos/house.svg";
 import logo1 from "../public/images/logos/theogony.svg";
 import logo2 from "../public/images/logos/es_recader.svg";
-import logo3 from "../public/images/logos/theogony_api.svg";
 import logo4 from "../public/images/logos/kenken.svg";
 import logo5 from "../public/images/logos/devtools.svg";
 import logo6 from "../public/images/logos/cards.svg";
+import plus from "../public/images/logos/plus.svg";
 
-export const logos = [house, logo1, logo2, logo4, logo6, logo5];
+export const logos = [house, logo1, logo2, logo4, logo6, logo5, plus];
 
 ///////////////////
 // Background Imports
 import { bgTheogony } from "./backgrounds/theogony";
 import { bgCards } from "./backgrounds/cards";
+import { bgBallIn, bgBallIn2, bgBallOut } from "./backgrounds/ball";
 
 // Background Path Imports
 import pathTheogony from "../public/images/background/path.svg";
@@ -31,6 +32,7 @@ import kenken1 from "../public/images/background/KenKen/path1.svg";
 import kenken2 from "../public/images/background/KenKen/path2.svg";
 import kenken3 from "../public/images/background/KenKen/path3.svg";
 import kenken4 from "../public/images/background/KenKen/path4.svg";
+import ball from "../public/images/background/ball.svg";
 
 // Constants for paths and logos
 const pathCards = [
@@ -47,13 +49,18 @@ const pathRecaders = [bike, box, truck];
 const pathKenKen = [kenken1, kenken2, kenken3, kenken4];
 
 export const backgrounds = [
-  { background: undefined, path: undefined, className: "" },
+  {
+    background: bgBallIn,
+    background2: bgBallIn2,
+    path: ball,
+    className: "backgroundImageIntro",
+  },
   { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
   { background: bgCards, path: pathRecaders, className: "backgroundImage" },
   { background: bgCards, path: pathKenKen, className: "backgroundImage" },
   { background: bgCards, path: pathCards, className: "bgCards" },
   { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
-  { background: bgCards, path: pathCards, className: "bgCards" },
+  { background: bgBallOut, path: ball, className: "backgroundImageIntro" },
 ];
 
 export const titles = [
@@ -73,6 +80,7 @@ export const titles = [
     title: "Dev Tools",
     description: "Website to post and find developers tools",
   },
+  { title: "⠀", description: "⠀" },
 ];
 
 export const skills = [
@@ -81,6 +89,7 @@ export const skills = [
   ["react", "nextjs", "tailwind", "svg", "figma", "", ""],
   // ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
   ["java", "idea", "figma", "uml", "git", "", ""],
-  ["javascript", "html", "css", "nodejs", "socketio", ""],
-  ["typescript", "nestjs", "jwt", "mysql", "dbeaver", "", "", ""],
+  ["javascript", "html", "css", "nodejs", "socketio", "", ""],
+  ["typescript", "nestjs", "jwt", "mysql", "dbeaver", "", ""],
+  ["", "", "", "", "", "", "", ""],
 ];

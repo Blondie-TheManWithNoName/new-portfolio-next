@@ -3,6 +3,8 @@ import styles from "../styles/work.module.scss";
 import intro from "../styles/intro.module.scss";
 import ParallaxImage from "./ParallaxImage";
 import useScrollPosition from "../hooks/useScrollPosition";
+import useWindowSize from "../hooks/useWIndowSize";
+
 import classnames from "classnames";
 import { useRouter } from "next/router";
 
@@ -13,7 +15,8 @@ import { logos, backgrounds, titles, skills } from "../assets/assets";
 export default function Works({ setShowBall }) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
-  const HEIGHT = 2000;
+  const { width, height } = useWindowSize();
+  const HEIGHT = height; // CHECK
   const router = useRouter();
 
   const scrollY = useScrollPosition();
@@ -57,15 +60,28 @@ export default function Works({ setShowBall }) {
           >
             {backgrounds.map((background, index) => (
               <div className={styles.background}>
-                <ParallaxImage
-                  key={index}
-                  path={background.path}
-                  fixedPositions={background.background}
-                  className={background.className}
-                  startOffset={fixed + index * HEIGHT}
-                  endOffset={fixed + (index + 1) * HEIGHT}
-                  move={-800}
-                />
+                {fixed && (
+                  <ParallaxImage
+                    key={index}
+                    path={background.path}
+                    fixedPositions={background.background}
+                    className={background.className}
+                    startOffset={fixed + index * HEIGHT}
+                    endOffset={fixed + (index + 1) * HEIGHT}
+                    move={-800}
+                  />
+                )}
+                {fixed && background.background2 && (
+                  <ParallaxImage
+                    key={index}
+                    path={background.path}
+                    fixedPositions={background.background2}
+                    className={background.className}
+                    startOffset={fixed + index * HEIGHT}
+                    endOffset={fixed + (index + 1) * HEIGHT}
+                    move={-500}
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -92,24 +108,31 @@ export default function Works({ setShowBall }) {
               top: `calc(-${100 * workIndex}% - ${8 * workIndex}rem)`,
             }}
           >
-            {logos.map((logo, index) =>
-              index === 0 ? (
-                workTitle(setShowBall)
-              ) : (
-                <video
-                  className={styles.video}
-                  muted
-                  loop
-                  autoPlay
-                  onMouseEnter={() => setShowBall({ show: true, text: "View" })}
-                  onMouseLeave={() => setShowBall({ show: false, text: "" })}
-                  onClick={() => router.push("theogony")}
-                >
-                  <source src={`/videos/output2.mp4`} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              )
-            )}
+            {logos.map((logo, index) => {
+              if (index === 0) {
+                return workTitle(setShowBall);
+              } else if (index === logos.length - 1) {
+                return moreWorkTitle(setShowBall);
+              } else {
+                return (
+                  <video
+                    key={index} // Added key prop for React list rendering
+                    className={styles.video}
+                    muted
+                    loop
+                    autoPlay
+                    onMouseEnter={() =>
+                      setShowBall({ show: true, text: "View" })
+                    }
+                    onMouseLeave={() => setShowBall({ show: false, text: "" })}
+                    onClick={() => router.push("theogony")}
+                  >
+                    <source src={`/videos/output2.mp4`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                );
+              }
+            })}
           </div>
         </div>
         <section className={styles.skills}>
@@ -171,6 +194,26 @@ function workTitle(setShowBall) {
       <h2 style={{ position: "relative" }}>
         <div className={classnames(intro.gradientText, styles.recentTitle)}>
           RECENT
+        </div>
+        <div>WORK</div>
+      </h2>
+    </div>
+  );
+}
+
+function moreWorkTitle(setShowBall) {
+  return (
+    <div
+      className={classnames(styles.workTitle, styles.mouseBallHover)}
+      onMouseEnter={() => setShowBall({ show: true, text: "More" })}
+      onMouseLeave={() => setShowBall({ show: false, text: "More" })}
+    >
+      <h2 style={{ position: "relative" }}>
+        <div
+          className={classnames(intro.gradientText, styles.recentTitle)}
+          style={{ right: 0 }}
+        >
+          MORE
         </div>
         <div>WORK</div>
       </h2>
