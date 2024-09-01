@@ -19,18 +19,18 @@
   grid-column-start: 2;
   width: 100%;
   justify-content: flex-end;
-  h2 {
-    font-weight: bolder;
-    font-size: 2rem;
-    display: inline;
-  }
+  // h2 {
+  //   font-weight: bolder;
+  //   font-size: 2rem;
+  //   display: inline;
+  // }
 }
 .text {
   font-family: "Poppins", sans-serif;
   color: #10314a;
-  font-size: 2em;
+  font-size: 2.5em;
   margin-top: 0.7rem;
-  line-height: 3rem;
+  // line-height: 3rem;
   letter-spacing: -0.075rem;
   word-spacing: 0.25rem;
   text-wrap: balance;
@@ -41,7 +41,7 @@
   min-height: 0;
   grid-row-start: 4;
   grid-column-start: 2;
-  width: 150%;
+  width: 145%;
   // max-width: 60;
   // min-width: 50ch;
 }

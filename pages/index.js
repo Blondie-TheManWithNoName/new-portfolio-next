@@ -276,17 +276,15 @@ export default function Home() {
           //   // boxShadow: "0px -3px 25px 0px rgba(16, 49, 74, 0.5)",
           // }}
         >
-          <div className={aboutme.title}>
-            <h2 className={intro.gradientText}>ABOUT ME</h2>
-          </div>
           <div className={aboutme.aboutMeText}>
-            <p className={aboutme.text}>
+            {/* <p className={aboutme.text}>
               I'm Noah and since a younger age I developed a passion for coding.
-            </p>
+            </p> */}
             <p className={aboutme.text} style={{ marginTop: "5rem" }}>
-              I like to work on websites from start to end with interactive and
-              memorable user experience. I enjoy starting new challenging
-              projects and face new problems to overcome myself.
+              I stay engaged from the first idea to the <br /> final result. My
+              main goal is to create <br />
+              interactive and memorable user <br />
+              experiences by tailoring each step.
             </p>
             {/* <p className={aboutme.text}>
               I enjoy starting new challenging projects and face new problems to
