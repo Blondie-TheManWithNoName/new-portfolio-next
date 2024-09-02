@@ -19,6 +19,7 @@ const ParallaxImage = ({
 
   const dynamicClass = classNames(styles.container, {
     [styles.backgroundImage]: className === "backgroundImage",
+    [styles.backgroundImageIntro]: className === "backgroundImageIntro",
     [styles.bgCards]: className === "bgCards",
   });
 

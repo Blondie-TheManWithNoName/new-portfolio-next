@@ -73,7 +73,7 @@ export default function Works({ setShowBall }) {
                 )}
                 {fixed && background.background2 && (
                   <ParallaxImage
-                    key={index}
+                    key={`${index}-2`}
                     path={background.path}
                     fixedPositions={background.background2}
                     className={background.className}
@@ -205,8 +205,8 @@ function moreWorkTitle(setShowBall) {
   return (
     <div
       className={classnames(styles.workTitle, styles.mouseBallHover)}
-      onMouseEnter={() => setShowBall({ show: true, text: "More" })}
-      onMouseLeave={() => setShowBall({ show: false, text: "More" })}
+      onMouseEnter={() => setShowBall({ show: true, text: "Coming Soon" })}
+      onMouseLeave={() => setShowBall({ show: false, text: "" })}
     >
       <h2 style={{ position: "relative" }}>
         <div
