@@ -57,6 +57,8 @@ function getHeight(scroll, windowHeight) {
 }
 
 export default function Home() {
+  const currentTime = useCurrentTime();
+
   const container = useRef();
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [heightTop, setHeightTop] = useState({ top: 400, bottom: 400 });
@@ -327,14 +329,82 @@ export default function Home() {
           </div>
         </section> */}
         <Works setShowBall={setShowBall} />
-        <section
+        {/* <section
           className={aboutme.contact}
           style={{ height: "200vh", marginTop: "20rem" }}
         >
           <div className={aboutme.title}>
             <h2 className={intro.gradientText}>CONTACT</h2>
           </div>
-        </section>
+        </section> */}
+
+        <footer className={footer.footer} ref={footerRef}>
+          <div className={footer.connectContainer}>
+            <div className={footer.topLine}>
+              <Image src={favicon} className={footer.favicon}></Image>
+              {/* <p>Let's</p> */}
+              <p className={footer.bottomLine}>
+                Let's <br />
+                connect!
+              </p>
+            </div>
+            <div className={footer.line}></div>
+            <div className={footer.CTA}>
+              <a
+                href="mailto:ngguardiola@gmail.com"
+                onMouseEnter={() => setShowBall({ show: true, text: "Mail" })}
+                onMouseLeave={() => setShowBall({ show: false, text: "" })}
+              >
+                nbguardiola@gmail.com
+              </a>
+              <a
+                href="tel:+34636175308"
+                onMouseEnter={() => setShowBall({ show: true, text: "Call" })}
+                onMouseLeave={() => setShowBall({ show: false, text: "" })}
+              >
+                +34 636 17 53 08
+              </a>
+              {/* <a
+                href="https://www.linkedin.com/in/nbguardiola/"
+                target="_blank"
+                onMouseEnter={() => setShowBall({ show: true, text: "Go" })}
+                onMouseLeave={() => setShowBall({ show: false, text: "" })}
+              >
+                Connect
+              </a> */}
+            </div>
+          </div>
+
+          <div className={footer.footerFooter}>
+            <div className={footer.footerSection}>
+              <p className={classNames(footer.smallTitle, footer.footerText)}>
+                Local Time
+              </p>{" "}
+              <p className={classNames(footer.footerText)}>{currentTime}</p>
+            </div>
+            <div className={footer.footerSection}>
+              <p className={classNames(footer.smallTitle, footer.footerText)}>
+                Socials
+              </p>{" "}
+              <a
+                className={classNames(footer.footerText)}
+                href="https://www.linkedin.com/in/nbguardiola/"
+                target="_blank"
+                rel="noopener"
+              >
+                LinkedIn
+              </a>
+              <a
+                className={classNames(footer.footerText)}
+                href="https://github.com/Blondie-TheManWithNoName"
+                target="_blank"
+                rel="noopener"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );
