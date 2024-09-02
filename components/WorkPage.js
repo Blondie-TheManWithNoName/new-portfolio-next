@@ -77,8 +77,17 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
   const [showBall, setShowBall] = useState({ show: false, text: "HOLA" });
   const [transitionIn, setTransitionIn] = useState(false);
   const currentTime = useCurrentTime();
+  const [headerColor, setHeaderColor] = useState("#1C1D20");
 
   const bottomRef = useRef(null);
+
+  const footerRef = useRef(null);
+
+  const isFooterAtTop = useIntersectionObserver(footerRef, {
+    root: null, // The viewport
+    rootMargin: "0px",
+    threshold: 0.96, // Trigger when 100% of the footer is in view
+  });
 
   const { scrollYProgress: scrollYProgressContainer } = useScroll({
     target: containerRef,
@@ -90,7 +99,16 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
     offset: ["start end", "end start"],
   });
 
-  const transformTextY = useTransform(scrollYProgressText, [0, 1], [0, 300]);
+  useEffect(() => {
+    if (isFooterAtTop) setHeaderColor("white");
+    else setHeaderColor("#1C1D20");
+  }, [isFooterAtTop]);
+
+  const transformTextY = useTransform(
+    scrollYProgressText,
+    [0, 1],
+    [0, height / 3]
+  );
   const transformRightY = useTransform(
     scrollYProgressContainer,
     [0, 1],
@@ -127,6 +145,14 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
 
   return (
     <main className={styles.main}>
+      <header
+        className={classNames(intro.header)}
+        style={{ position: "fixed" }}
+      >
+        <a onClick={handleTransitionHome} style={{ color: headerColor }}>
+          Noah Guardiola
+        </a>
+      </header>
       <MouseBall
         show={showBall}
         ballAnimation={false}
@@ -217,13 +243,13 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
           <motion.div style={{ y: transformLeftY }}></motion.div>
         </motion.div>
       </section>
-      <footer className={styles.footer}>
+      <footer className={styles.footer} ref={footerRef}>
         <div className={styles.nextCaseTitle}>
           <h3 className={styles.smallTitle}>Next Case</h3>
         </div>
         <div
           className={styles.nextCaseContainer}
-          onMouseEnter={() => setShowBall({ show: true, text: "Check" })}
+          onMouseEnter={() => setShowBall({ show: true, text: "Next" })}
           onMouseLeave={() => setShowBall({ show: false, text: "" })}
           onClick={handleTransitionOut}
           style={{ marginTop: transitionIn ? "10vh" : "20vh" }}

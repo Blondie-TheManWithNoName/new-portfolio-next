@@ -132,6 +132,19 @@ export default function Home() {
     };
   }, []);
 
+  const scrollY = useScrollPosition();
+  const { width, height } = useWindowSize();
+
+  useEffect(() => {
+    if (scrollY >= height * 1.15) setHeaderFixed(true);
+    else setHeaderFixed(false);
+  }, [scrollY]);
+
+  useEffect(() => {
+    if (isFooterAtTop) setHeaderColor("white");
+    else setHeaderColor("#1C1D20");
+  }, [isFooterAtTop]);
+
   const textContainer = {
     hidden: { opacity: 0 },
     visible: {
@@ -185,13 +198,29 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 0]);
   const yPic = useTransform(scrollYProgress, [0, 1], [0, 4000]);
   const yText = useTransform(scrollYProgress, [0, 1], [0, 2000]);
-  const height = useTransform(scrollYProgress, [0, 1], [400, 200]);
   return (
     <>
       <Head>
         <title>Noah Guardiola • Web Developer</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
+
+      <header className={intro.header} style={{ position: "absolute" }}>
+        <a href="" style={{ color: "#fff" }}>
+          Noah Guardiola
+        </a>
+      </header>
+      <header
+        className={classNames(
+          intro.header,
+          headerFixed ? intro.fadeIn : intro.fadeOut
+        )}
+        style={{ position: "fixed" }}
+      >
+        <a href="" style={{ color: headerColor }}>
+          Noah Guardiola
+        </a>
+      </header>
       <main className={intro.main} ref={container}>
         <MouseBall
           show={showBall}
@@ -252,6 +281,7 @@ export default function Home() {
                   <motion.p
                     variants={textAnimation}
                     style={{
+                      overflow: "visible",
                       paddingBottom: "2rem",
                     }}
                   >
