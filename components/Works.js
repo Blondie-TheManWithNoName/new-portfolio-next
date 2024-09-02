@@ -175,7 +175,7 @@ export default function Works({ setShowBall }) {
           </div>
         </div>
         <section className={styles.skills}>
-          {skills.map((skill, indexSkills) => (
+          {skills[0].map((skill, indexSkills) => (
             <motion.div className={styles.skillsWrapped} key={indexSkills}>
               <div
                 className={styles.skillsContainer}

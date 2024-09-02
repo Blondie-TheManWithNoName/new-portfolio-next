@@ -102,12 +102,12 @@ export const titles = [
 ];
 
 export const skills = [
-  ["", "", "", "", "", "", "", ""],
-  ["", "typescript", "nodejs", "express", "mysql", "aws", ""],
-  ["", "react", "nextjs", "tailwind", "svg", "figma", ""],
+  ["", "", "", "", ""],
+  ["typescript", "nodejs", "express", "mysql", "aws"],
+  ["react", "nextjs", "tailwind", "svg", "figma"],
   // ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
-  ["", "java", "idea", "figma", "uml", "git", ""],
-  ["", "javascript", "html", "css", "nodejs", "socketio", ""],
+  ["java", "idea", "figma", "uml", "git"],
+  ["javascript", "html", "css", "nodejs", "socketio"],
   // ["", "typescript", "nestjs", "jwt", "mysql", "dbeaver", ""],
-  ["", "", "", "", "", "", "", ""],
+  ["", "", "", "", ""],
 ];
