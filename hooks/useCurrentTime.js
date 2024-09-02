@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 
 export const useCurrentTime = () => {
   const [currentTime, setCurrentTime] = useState(() => getFormattedTime());
@@ -8,7 +10,7 @@ export const useCurrentTime = () => {
       setCurrentTime(getFormattedTime());
     };
     const intervalId = setInterval(updateTime, 60000);
-    updateTime();
+    updateTime(); // Initial update
     return () => clearInterval(intervalId);
   }, []);
 
@@ -16,14 +18,12 @@ export const useCurrentTime = () => {
 };
 
 const getFormattedTime = () => {
+  const timeZone = "Europe/Berlin";
   const now = new Date();
-  let hours = now.getHours();
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-  const ampm = hours >= 12 ? "PM" : "AM";
 
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  const formattedHours = String(hours).padStart(2, "0");
+  const zonedDate = toZonedTime(now, timeZone);
 
-  return `${formattedHours}:${minutes} ${ampm} GMT+2`;
+  const formattedTime = format(zonedDate, "hh:mm a 'GMT+2'");
+
+  return formattedTime;
 };
