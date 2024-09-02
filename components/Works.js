@@ -10,17 +10,19 @@ import { useRouter } from "next/router";
 
 import { motion } from "framer-motion";
 import Sticky from "react-stickynode";
-import { logos, backgrounds, titles, skills } from "../assets/assets";
+import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
 
 export default function Works({ setShowBall }) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
+  const [out, setOut] = useState(false);
   const { width, height } = useWindowSize();
-  const HEIGHT = height; // CHECK
+  const HEIGHT = height * 3; // CHECK
   const router = useRouter();
-
+  const workTop = height * 1.7;
   const scrollY = useScrollPosition();
   const handleStateChange = (status) => {
+    console.log("status.status", status.status);
     if (status.status === Sticky.STATUS_FIXED) {
       setFixed(scrollY);
     } else {
@@ -29,6 +31,27 @@ export default function Works({ setShowBall }) {
   };
 
   useEffect(() => {
+    // console.log("fixed", fixed);
+
+    return () => {};
+  }, [fixed]);
+
+  useEffect(() => {
+    if (scrollY >= workTop && fixed !== workTop) {
+      setFixed(workTop);
+    }
+    if (scrollY < workTop) {
+      setFixed(0);
+      setOut(false);
+    }
+    if (scrollY >= HEIGHT * logos.length + height * 0.7) {
+      setOut(true);
+      setFixed(0);
+    }
+  }, [scrollY]);
+
+  useEffect(() => {
+    // console.log("hola", scrollY - fixed, ">=", HEIGHT * (workIndex + 1));
     if (fixed) {
       if (scrollY - fixed >= HEIGHT * (workIndex + 1)) {
         setWorkIndex(workIndex + 1);
@@ -44,12 +67,23 @@ export default function Works({ setShowBall }) {
   const container = useRef();
 
   return (
-    <div className={styles.stickyContainer} ref={container}>
-      <Sticky
+    <div
+      className={styles.stickyContainer}
+      style={{ height: HEIGHT * logos.length }}
+    >
+      {/* <Sticky
         top={0}
         onStateChange={handleStateChange}
         innerClass="workContainer"
         className="workContainer"
+      > */}
+      <div
+        className={styles.workContainer}
+        style={{
+          position: fixed ? "fixed" : out ? "absolute" : "relative",
+          ...(out && { bottom: 0 }),
+          ...(fixed && { top: 0 }),
+        }}
       >
         <div className={styles.backgroundWrapper}>
           <div
@@ -105,7 +139,9 @@ export default function Works({ setShowBall }) {
           <div
             className={styles.videosContainer}
             style={{
-              top: `calc(-${100 * workIndex}% - ${8 * workIndex}rem)`,
+              top: `calc(-${100 * workIndex}% - ${10 * workIndex}rem + ${
+                workIndex * 4 + 2
+              }vh)`,
             }}
           >
             {logos.map((logo, index) => {
@@ -127,7 +163,10 @@ export default function Works({ setShowBall }) {
                     onMouseLeave={() => setShowBall({ show: false, text: "" })}
                     onClick={() => router.push("theogony")}
                   >
-                    <source src={`/videos/output2.mp4`} type="video/mp4" />
+                    <source
+                      src={`/videos/${videos[index]}-compressed.mp4`}
+                      type="video/mp4"
+                    />
                     Your browser does not support the video tag.
                   </video>
                 );
@@ -179,7 +218,9 @@ export default function Works({ setShowBall }) {
             </div>
           ))}
         </div>
-      </Sticky>
+      </div>
+
+      {/* </Sticky> */}
     </div>
   );
 }
