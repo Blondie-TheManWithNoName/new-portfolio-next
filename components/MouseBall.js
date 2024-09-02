@@ -29,7 +29,7 @@ export default function MouseBall({
       if (show.text !== text) {
         setSize(0);
         setTimeout(() => {
-          if (show) setText(show.text);
+          if (show.show) setText(show.text);
 
           setSize(show.show ? pixelSize : 0);
         }, 150);
@@ -185,15 +185,15 @@ export default function MouseBall({
             }}
             initial={{
               opacity: 0,
-              fontSize: ballAnimation ? "5rem" : "1.25rem",
+              fontSize: ballAnimation ? "5rem" : "1rem",
             }}
             animate={{
               opacity: size > 0 ? 1 : 0,
-              fontSize: "1.25rem",
+              fontSize: "1rem",
               transition: {
                 opacity: {
                   duration: animation ? 0.5 : 0.25,
-                  ease: animation ? [0.7, 0, 0.84, 0] : [0.34, 1, 0.64, 1],
+                  ease: animation ? [0.7, 0, 0.84, 0] : [0.7, 0, 0.84, 0],
                   delay: animation ? 0.5 : 0,
                 },
                 fontSize: { duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1.5 },
