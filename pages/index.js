@@ -66,11 +66,20 @@ export default function Home() {
   const [heightBot, setHeightBot] = useState(0);
   const [ballAnimation, setBallAnimation] = useState(false);
   const [x, setX] = useState(0);
+  const [headerColor, setHeaderColor] = useState("white");
+  const [headerFixed, setHeaderFixed] = useState(false);
+  const footerRef = useRef(null);
+
+  const isFooterAtTop = useIntersectionObserver(footerRef, {
+    root: null, // The viewport
+    rootMargin: "0px",
+    threshold: 0.96, // Trigger when 100% of the footer is in view
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
     if (typeof window !== "undefined") {
-      // document.body.style.height = "100vh";
+      document.body.style.height = "100vh";
 
       // Unblock scrolling after 3 seconds
       const timer = setTimeout(() => {
@@ -118,10 +127,6 @@ export default function Home() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
-    // setTimeout(() => {
-    //   setBallAnimation(false);
-    // }, 3000);
 
     requestAnimationFrame(raf);
 

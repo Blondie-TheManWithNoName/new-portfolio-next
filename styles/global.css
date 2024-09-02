@@ -59,10 +59,23 @@ img {
 
 .workContainer {
   width: 100%;
-  height: 99vh;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 50px;
+
+  /* height: 99vh; */
+  height: 100vh;
   z-index: 4;
   display: flex;
   flex-direction: column;
+  /* background-color: #0084d12a; */
+}
+
+.smallTitle {
+  font-size: calc(0.55rem + 0.25vw);
+  font-weight: 400;
+  text-transform: uppercase;
+}
 
 html.lenis,
 html.lenis body {
