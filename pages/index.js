@@ -1,10 +1,18 @@
 import Head from "next/head";
 import intro from "../styles/intro.module.scss";
 import carousell from "../styles/carousell.module.scss";
+import classNames from "classnames";
+import useScrollPosition from "../hooks/useScrollPosition";
+import useWindowSize from "../hooks/useWIndowSize";
 import aboutme from "../styles/aboutme.module.scss";
+import footer from "../styles/footer.module.scss";
 import classnames from "classnames";
 import MouseBall from "../components/MouseBall";
+import favicon from "../public/images/favicon.png";
 import { useEffect, useRef, useState } from "react";
+import { useCurrentTime } from "../hooks/useCurrentTime";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+
 import Lenis from "lenis";
 import {
   useScroll,
@@ -15,6 +23,7 @@ import {
   delay,
 } from "framer-motion";
 import Works from "../components/Works";
+import Image from "next/image";
 import BallAnimation from "../components/BallAnimation";
 
 function getHeight(scroll, windowHeight) {
@@ -127,7 +136,12 @@ export default function Home() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.125, delayChildren: 2 },
+      transition: {
+        duration: 1.5, // Specify the duration for opacity animation
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.125,
+        delayChildren: 2,
+      },
     },
   };
 
@@ -136,20 +150,32 @@ export default function Home() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
-        damping: 250,
-        stiffness: 2000,
-        mass: 20,
+        y: {
+          type: "spring",
+          damping: 250,
+          stiffness: 2000,
+          mass: 20,
+        },
+        // opacity: {
+        //   duration: 2, // Specify the duration for opacity animation
+        //   ease: [0.16, 1, 0.3, 1], // Use a different easing for opacity
+        // },
       },
     },
     hidden: {
       opacity: 0,
-      y: "200%",
+      y: "100%",
       transition: {
-        type: "spring",
-        damping: 250,
-        stiffness: 2000,
-        mass: 20,
+        y: {
+          type: "spring",
+          damping: 250,
+          stiffness: 2000,
+          mass: 20,
+        },
+        // opacity: {
+        //   duration: 2, // Specify the duration for opacity animation
+        //   ease: [0.16, 1, 0.3, 1],
+        // },
       },
     },
   };
@@ -173,7 +199,6 @@ export default function Home() {
           xStartProp={0}
           yStartProp={0}
         />
-
         <section className={intro.introSection}>
           {/* <BallAnimation ref={ballRef} /> */}
           <motion.div
@@ -184,20 +209,19 @@ export default function Home() {
             <motion.div className={intro.introPic} style={{ y: yPic }}>
               <img src="../images/hero.jpg" alt="Noah" />
             </motion.div>
-            {/* <div className={intro.intro}> */}
             <motion.h1 className={intro.introText} style={{ y: yText }}>
               <motion.div
                 variants={textContainer}
                 initial="hidden"
                 animate="visible"
+                style={{
+                  position: "relative",
+                  overflow: "visible",
+                  // width: "100%",
+                  // margin: "auto",
+                }}
               >
                 <div className={intro.indented}>
-                  {/* {ballAnimation ? (
-                    <BallAnimation ref={ballRef} />
-                  ) : (
-                    <div></div>
-                  )} */}
-
                   <motion.p className={intro.backText} variants={textAnimation}>
                     I'm a
                   </motion.p>
@@ -205,9 +229,8 @@ export default function Home() {
 
                 <div
                   style={{
-                    overflow: "hidden",
+                    // overflow: "hidden",
                     width: "fit-content",
-                    // paddingBlock: "10rem",
                     minidth: "0",
                     minHeight: "0",
                   }}
@@ -222,51 +245,25 @@ export default function Home() {
 
                 <div
                   style={{
-                    overflow: "hidden",
-                    width: "fit-content",
+                    overflow: "visible",
                   }}
                   className={intro.indented}
                 >
                   <motion.p
-                    className={intro.frontText}
-                    // className={intro.indented}
                     variants={textAnimation}
                     style={{
-                      overflow: "hidden",
-                      width: "fit-content",
                       paddingBottom: "2rem",
                     }}
                   >
-                    <motion.span>with</motion.span>{" "}
-                    <motion.span
-                      className={classnames(
-                        intro.frontText,
-                        intro.gradientText
-                      )}
-                    >
+                    with{" "}
+                    <motion.span className={intro.gradientText}>
                       UX design
                     </motion.span>{" "}
-                    <motion.span>focus</motion.span>
+                    focus
                   </motion.p>
                 </div>
               </motion.div>
             </motion.h1>
-
-            <div className={intro.introHello}>
-              {/* <div>
-                <h2>
-                  {" "}
-                  hello!
-                  <br />
-                  hola!
-                  <br />
-                  hej!
-                  <br />
-                  hello!
-                </h2>
-              </div> */}
-            </div>
-            {/* </div> */}
           </motion.div>
         </section>
         <section
