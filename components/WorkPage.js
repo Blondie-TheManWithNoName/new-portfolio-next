@@ -15,6 +15,7 @@ import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import useWindowSize from "../hooks/useWIndowSize";
 
 function WorkPage({ work, texts, video, nextWork, pills }) {
+  const { width, height } = useWindowSize();
   const router = useRouter();
   // Lenis
   useEffect(() => {
@@ -72,6 +73,12 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
 
     setTimeout(() => {
       router.push(nextWork.url);
+    }, 400);
+  };
+
+  const handleTransitionHome = () => {
+    setTimeout(() => {
+      router.push("/");
     }, 400);
   };
 
