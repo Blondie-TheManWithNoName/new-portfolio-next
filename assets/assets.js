@@ -7,7 +7,15 @@ import logo5 from "../public/images/logos/devtools.svg";
 import logo6 from "../public/images/logos/cards.svg";
 import plus from "../public/images/logos/plus.svg";
 
-export const logos = [house, logo1, logo2, logo4, logo6, logo5, plus];
+export const logos = [house, logo1, logo2, logo4, logo6, plus];
+export const videos = [
+  "",
+  "theogony-api",
+  "es-recader",
+  "ken-ken",
+  "card-mat",
+  "",
+];
 
 ///////////////////
 // Background Imports
@@ -59,37 +67,47 @@ export const backgrounds = [
   { background: bgCards, path: pathRecaders, className: "backgroundImage" },
   { background: bgCards, path: pathKenKen, className: "backgroundImage" },
   { background: bgCards, path: pathCards, className: "bgCards" },
-  { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
+  // { background: bgTheogony, path: pathTheogony, className: "backgroundImage" },
   { background: bgBallOut, path: ball, className: "backgroundImageIntro" },
 ];
 
 export const titles = [
   { title: "⠀", description: "⠀" },
-  { title: "Theogony", description: "Greek Gods Family Tree API" },
+  {
+    title: "Theogony",
+    description: "Greek Mythology Family Tree API",
+    page: "theogony",
+  },
   {
     title: "Es Recader",
     description: "Landing webpage for a delivery business",
+    page: "esrecader",
   },
   // { title: "Theogony API", description: "Description" },
   {
     title: "Ken Ken",
-    description: "Desktop App to play, generate and solve KenKens",
+    description: "App to play, generate and solve KenKens",
+    page: "kenken",
   },
-  { title: "Card Mat", description: "Web App to play poker cards online" },
   {
-    title: "Dev Tools",
-    description: "Website to post and find developers tools",
+    title: "Card Mat",
+    description: "Web App to play poker cards online",
+    page: "cardmat",
   },
+  // {
+  //   title: "Dev Tools",
+  //   description: "Website to post and find developers tools",
+  // },
   { title: "⠀", description: "⠀" },
 ];
 
 export const skills = [
   ["", "", "", "", "", "", "", ""],
-  ["typescript", "nodejs", "express", "mysql", "aws", "", ""],
-  ["react", "nextjs", "tailwind", "svg", "figma", "", ""],
+  ["", "typescript", "nodejs", "express", "mysql", "aws", ""],
+  ["", "react", "nextjs", "tailwind", "svg", "figma", ""],
   // ["", "typescript", "nodejs", "express", "aws", "mysql", "", ""],
-  ["java", "idea", "figma", "uml", "git", "", ""],
-  ["javascript", "html", "css", "nodejs", "socketio", "", ""],
-  ["typescript", "nestjs", "jwt", "mysql", "dbeaver", "", ""],
+  ["", "java", "idea", "figma", "uml", "git", ""],
+  ["", "javascript", "html", "css", "nodejs", "socketio", ""],
+  // ["", "typescript", "nestjs", "jwt", "mysql", "dbeaver", ""],
   ["", "", "", "", "", "", "", ""],
 ];
