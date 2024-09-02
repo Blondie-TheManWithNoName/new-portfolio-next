@@ -281,10 +281,21 @@
   grid-template-columns: 1fr 1fr;
   margin-inline: 2.25vw;
   column-gap: 2vw;
+  width: 15vw;
+  height: auto;
 }
 .footerSection > :first-child {
   grid-column: span 2;
-  color: gray;
+  color: #9eadbb;
+}
+
+.footerFooterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 52vh;
+  width: 100%;
+  align-items: center;
 }
 
 .footerFooter {
@@ -293,4 +304,21 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 2vh;
+  height: 5vh;
+}
+
+.moreWork {
+  font-size: 2vmin;
+  line-height: 8vmin;
+  width: 32vmin;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  padding-inline: 4vmin;
+  border-radius: 5vmin;
+  letter-spacing: 0vmin;
+  color: white;
+  border: 1px solid #9eafbb;
+  margin-top: 6vh;
+  cursor: pointer;
 }

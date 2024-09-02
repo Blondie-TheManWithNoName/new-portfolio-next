@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import styles from "../styles/workInfo.module.scss";
+import intro from "../styles/intro.module.scss";
 import classNames from "classnames";
 import logo1 from "../public/images/logos/theogony.svg";
 import mockupLg from "../public/images/mockup-lg.png";
@@ -10,6 +11,8 @@ import Lenis from "lenis";
 import MouseBall from "../components/MouseBall";
 import { useRouter } from "next/router";
 import { useCurrentTime } from "../hooks/useCurrentTime";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import useWindowSize from "../hooks/useWIndowSize";
 
 function WorkPage({ work, texts, video, nextWork, pills }) {
   const router = useRouter();
@@ -275,41 +278,65 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
             ></div>
           </div>
           <h3 className={styles.nextCase}>{nextWork.title}</h3>
-          <div
-            className={styles.line}
-            style={{ position: "absolute", top: "93%" }}
-          ></div>
+          <div className={styles.line}></div>
           {/* <div className={styles.nextCaseOverview}></div> */}
 
           {/* <div className={styles.background}></div> */}
         </div>
-        <div className={styles.footerFooter}>
-          <div className={styles.footerSection}>
-            <p className={classNames(styles.smallTitle, styles.footerText)}>
-              Local Time
-            </p>{" "}
-            <p className={classNames(styles.footerText)}>{currentTime}</p>
-          </div>
-          <div className={styles.footerSection}>
-            <p className={classNames(styles.smallTitle, styles.footerText)}>
-              Socials
-            </p>{" "}
-            <a
-              className={classNames(styles.footerText)}
-              href="https://www.linkedin.com/in/nbguardiola/"
-              target="_blank"
-              rel="noopener"
-            >
-              LinkedIn
-            </a>
-            <a
-              className={classNames(styles.footerText)}
-              href="https://github.com/Blondie-TheManWithNoName"
-              target="_blank"
-              rel="noopener"
-            >
-              GitHub
-            </a>
+        <div className={styles.footerFooterContainer}>
+          <a
+            className={styles.moreWork}
+            // onMouseEnter={() => setShowBall({ show: true, text: "More" })}
+            // onMouseLeave={() => setShowBall({ show: false, text: "" })}
+          >
+            All Work
+          </a>
+          <div className={styles.footerFooter}>
+            <div className={styles.footerSection}>
+              <p className={classNames(styles.smallTitle, styles.footerText)}>
+                Local Time
+              </p>{" "}
+              <p
+                className={classNames(styles.footerText)}
+                style={{ gridColumn: "span 2" }}
+              >
+                {currentTime}
+              </p>
+            </div>
+            <div className={styles.footerSection}>
+              <p></p>
+              <p
+                className={styles.footerText}
+                style={{
+                  gridColumn: "span 2",
+                  color: "#9EADBB",
+                  textAlign: "center",
+                }}
+              >
+                Designed & Coded by Noah
+              </p>
+            </div>
+            <div className={styles.footerSection}>
+              <p className={classNames(styles.smallTitle, styles.footerText)}>
+                Socials
+              </p>{" "}
+              <a
+                className={classNames(styles.footerText)}
+                href="https://www.linkedin.com/in/nbguardiola/"
+                target="_blank"
+                rel="noopener"
+              >
+                LinkedIn
+              </a>
+              <a
+                className={classNames(styles.footerText)}
+                href="https://github.com/Blondie-TheManWithNoName"
+                target="_blank"
+                rel="noopener"
+              >
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
       </footer>
