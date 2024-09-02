@@ -161,7 +161,7 @@ export default function Works({ setShowBall }) {
                       setShowBall({ show: true, text: "View" })
                     }
                     onMouseLeave={() => setShowBall({ show: false, text: "" })}
-                    onClick={() => router.push("theogony")}
+                    onClick={() => router.push(titles[index].page)}
                   >
                     <source
                       src={`/videos/${videos[index]}-compressed.mp4`}
