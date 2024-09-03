@@ -9,18 +9,18 @@ function EsRecader() {
     title: "Card Mat",
     subtitle: "Poker cards online app",
     logo: logo,
+    video: "card-mat",
     images: {
       uml: uml,
     },
   };
 
   const texts = {
-    overview: `Poker Card Mat webiste app where you can move, flip, take cards with other 3 players and play any game you want, 
-    just like a regular card game you would play at home!`,
+    overview: `Poker Card Mat webiste app where you can move, flip, take cards among other actions in an online enviroment with 3 players more. It's esentially a sand-box where you are able to play any card game you want, 
+    just like if you had a table with cards.`,
     role: "Design, Development & Deploy",
     page: "www.cardmat.fun",
-    why: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ipsum ea quasi veniam velit.
-          Sint ea harum repellat similique illum tempore neque nihil natus quae vel, esse quis unde! Quam!`,
+    why: `This is a personal challenge I put myself to learn more about NodeJS and SocketIO.`,
   };
 
   const pills = [
