@@ -8,6 +8,11 @@
   src: url(../public/fonts/ESBuildTRIAL-Regular.ttf);
 }
 
+@font-face {
+  font-family: Poppins;
+  src: url(../public/fonts/Poppins/Poppins-Regular.ttf);
+}
+
 html,
 body {
   padding: 0;
