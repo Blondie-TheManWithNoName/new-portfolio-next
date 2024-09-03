@@ -24,15 +24,15 @@ export default function MouseBall({
   const scrollY = useScrollPosition();
 
   useEffect(() => {
-    if (x !== 0) {
+    if (x !== 0 && y !== 0) {
       setSize(show.show ? pixelSize : 0);
       if (show.text !== text) {
-        setSize(0);
-        setTimeout(() => {
-          if (show.show) setText(show.text);
-
-          setSize(show.show ? pixelSize : 0);
-        }, 150);
+        // setSize(0);
+        setText(show.text);
+        // setTimeout(() => {
+        // if (show.show) setText(show.text);
+        // setSize(show.show ? pixelSize : 0);
+        // }, 150);
       }
     }
   }, [show]);
@@ -107,8 +107,8 @@ export default function MouseBall({
                 : "linear-gradient(45deg,#1c1d20 -100%, #0086d1 0%, #af4261 100%)",
             }}
             animate={{
-              width: "75px",
-              height: "75px",
+              width: `${size}px`,
+              height: `${size}px`,
               backgroundImage:
                 "linear-gradient(45deg,#1c1d20 -100%, #0086d1 0%, #af4261 100%)",
               transition: {
