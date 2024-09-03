@@ -283,71 +283,109 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
                 height: transitionIn ? "150vw" : "6vw",
               }}
             ></div>
+        <footer className={styles.footer} ref={footerRef}>
+          <div className={styles.nextCaseTitle}>
+            <h3 className={styles.smallTitle}>Next Case</h3>
           </div>
-          <h3 className={styles.nextCase}>{nextWork.title}</h3>
-          <div className={styles.line}></div>
-          {/* <div className={styles.nextCaseOverview}></div> */}
-
-          {/* <div className={styles.background}></div> */}
-        </div>
-        <div className={styles.footerFooterContainer}>
-          <a
-            className={styles.moreWork}
-            // onMouseEnter={() => setShowBall({ show: true, text: "More" })}
-            // onMouseLeave={() => setShowBall({ show: false, text: "" })}
+          <div
+            className={styles.nextCaseContainer}
+            onMouseEnter={() =>
+              setShowBall({
+                show: true,
+                text: `${nextWork.url !== "snaketwo" ? "Next" : "Coming Soon"}`,
+              })
+            }
+            onMouseLeave={() => setShowBall({ show: false, text: "" })}
+            onClick={handleTransitionOut}
+            style={{ marginTop: transitionIn ? "10vh" : "20vh" }}
           >
-            All Work
-          </a>
-          <div className={styles.footerFooter}>
-            <div className={styles.footerSection}>
-              <p className={classNames(styles.smallTitle, styles.footerText)}>
-                Local Time
-              </p>{" "}
-              <p
-                className={classNames(styles.footerText)}
-                style={{ gridColumn: "span 2" }}
+            <div className={styles.nextContainer}>
+              <div
+                className={classNames(styles.logoNextContainer, {
+                  [styles.logoNextContainerTransition]: transitionIn,
+                })}
               >
-                {currentTime}
-              </p>
-            </div>
-            <div className={styles.footerSection}>
-              <p></p>
-              <p
-                className={styles.footerText}
+                <Image
+                  src={nextWork.logo}
+                  className={styles.logoNext}
+                  alt="Logo"
+                />
+              </div>
+              <div
+                className={styles.backgroundTransition}
                 style={{
-                  gridColumn: "span 2",
-                  color: "#9EADBB",
-                  textAlign: "center",
+                  width: transitionIn ? "150vw" : "6vw",
+                  height: transitionIn ? "150vw" : "6vw",
                 }}
-              >
-                Designed & Coded by Noah
-              </p>
+              ></div>
             </div>
-            <div className={styles.footerSection}>
-              <p className={classNames(styles.smallTitle, styles.footerText)}>
-                Socials
-              </p>{" "}
-              <a
-                className={classNames(styles.footerText)}
-                href="https://www.linkedin.com/in/nbguardiola/"
-                target="_blank"
-                rel="noopener"
-              >
-                LinkedIn
-              </a>
-              <a
-                className={classNames(styles.footerText)}
-                href="https://github.com/Blondie-TheManWithNoName"
-                target="_blank"
-                rel="noopener"
-              >
-                GitHub
-              </a>
+            <h3 className={styles.nextCase}>{nextWork.title}</h3>
+            <div className={styles.line}></div>
+            {/* <div className={styles.nextCaseOverview}></div> */}
+
+            {/* <div className={styles.background}></div> */}
+          </div>
+          <div className={styles.footerFooterContainer}>
+            <a
+              className={styles.moreWork}
+              onMouseEnter={() =>
+                setShowBall({ show: true, text: "Coming Soon" })
+              }
+              onMouseLeave={() => setShowBall({ show: false, text: "" })}
+            >
+              All Work
+            </a>
+            <div className={styles.footerFooter}>
+              <div className={styles.footerSection}>
+                <p className={classNames(styles.smallTitle, styles.footerText)}>
+                  Local Time
+                </p>{" "}
+                <p
+                  className={classNames(styles.footerText)}
+                  style={{ gridColumn: "span 2" }}
+                >
+                  {currentTime}
+                </p>
+              </div>
+              <div className={styles.footerSection}>
+                <p></p>
+                <p
+                  className={styles.footerText}
+                  style={{
+                    gridColumn: "span 2",
+                    color: "#9EADBB",
+                    textAlign: "center",
+                  }}
+                >
+                  Designed & Coded by Noah
+                </p>
+              </div>
+              <div className={styles.footerSection}>
+                <p className={classNames(styles.smallTitle, styles.footerText)}>
+                  Socials
+                </p>{" "}
+                <a
+                  className={classNames(styles.footerText)}
+                  href="https://www.linkedin.com/in/nbguardiola/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  className={classNames(styles.footerText)}
+                  href="https://github.com/Blondie-TheManWithNoName"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  GitHub
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+    </>
   );
 }
 
