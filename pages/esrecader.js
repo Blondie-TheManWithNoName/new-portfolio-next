@@ -2,21 +2,28 @@ import React from "react";
 import logo from "../public/images/logos/es_recader.svg";
 import nextLogo from "../public/images/logos/kenken.svg";
 import WorkPage from "../components/WorkPage";
+import screen2 from "../public/images/es-recader/screen-1.png";
+import screen1 from "../public/images/es-recader/screen-2.png";
 
 function EsRecader() {
   const work = {
     title: "Es Recader",
     subtitle: "webpage for a delivery business",
     logo: logo,
+    video: "es-recader",
+    images: {
+      screen1: screen1,
+      screen2: screen2,
+    },
   };
 
   const texts = {
-    overview: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ipsum ea quasi veniam velit.
-                Sint ea harum repellat similique illum tempore neque nihil natus quae vel, esse quis unde! Quam!`,
+    overview: `Es Recader is a landing to reach to new customers. States the services and places it operates with a visual impact and you can find a form that lets you contact the company directly.`,
+
     role: "Design & Development",
-    page: "www.esrecader.com",
-    why: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ipsum ea quasi veniam velit.
-          Sint ea harum repellat similique illum tempore neque nihil natus quae vel, esse quis unde! Quam!`,
+    page: "Not deployed yet",
+    why: `I kept the information 
+              short and concise with an easy-to-follow flow that lets the user have an undertanding of the  company with a quick peak.`,
   };
 
   const pills = [
