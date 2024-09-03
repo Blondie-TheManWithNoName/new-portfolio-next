@@ -2,12 +2,16 @@ import React from "react";
 import logo from "../public/images/logos/kenken.svg";
 import nextLogo from "../public/images/logos/cards.svg";
 import WorkPage from "../components/WorkPage";
+import uml from "../public/images/kenken/uml.svg";
 
 function EsRecader() {
   const work = {
     title: "Ken Ken",
     subtitle: "Desktop App to play KenKens",
     logo: logo,
+    images: {
+      uml: uml,
+    },
   };
 
   const texts = {
