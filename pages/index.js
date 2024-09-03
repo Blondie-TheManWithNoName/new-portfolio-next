@@ -243,7 +243,15 @@ export default function Home() {
             onMouseLeave={() => setShowBall({ show: false, text: "" })}
           >
             <motion.div className={intro.introPic} style={{ y: yPic }}>
-              <img src="../images/hero.jpg" alt="Noah" />
+              <img
+                src="../images/hero.jpg"
+                alt="Noah"
+                draggable="false"
+                userSelect="none"
+                pointerEvents="none"
+                onmousedown="return false"
+                style={{ userSelect: "none", pointerEvents: "none" }}
+              />
             </motion.div>
             <motion.h1 className={intro.introText} style={{ y: yText }}>
               <motion.div
