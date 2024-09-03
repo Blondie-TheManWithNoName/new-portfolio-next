@@ -2,12 +2,16 @@ import React from "react";
 import logo from "../public/images/logos/cards.svg";
 import nextLogo from "../public/images/logos/snake_two.svg";
 import WorkPage from "../components/WorkPage";
+import uml from "../public/images/cardmat/diagram.svg";
 
 function EsRecader() {
   const work = {
     title: "Card Mat",
     subtitle: "Poker cards online app",
     logo: logo,
+    images: {
+      uml: uml,
+    },
   };
 
   const texts = {
