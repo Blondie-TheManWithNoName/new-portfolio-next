@@ -13,7 +13,7 @@ function Theogony2() {
     title: "Theogony",
     subtitle: "Greek Gods Family Tree API",
     logo: logo1,
-    video: "",
+    video: "theogony-api",
     images: {
       uml: uml,
     },

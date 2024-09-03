@@ -224,7 +224,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
             </div>
             <div className={styles.info}>
               <a href={`http://${texts.page}/`} target="_blank" rel="noopener">
-                {texts.page}
+                {texts.pageText ?? texts.page}
               </a>
             </div>
           </div>
