@@ -38,7 +38,9 @@ export default function MouseBall({
   }, [show]);
 
   useEffect(() => {
-    if (!ballAnimation) setAnimation(false);
+    if (!ballAnimation) {
+      setAnimation(false);
+    }
     setTimeout(() => {
       setEndAnimation(true);
     }, 2500);
@@ -48,6 +50,7 @@ export default function MouseBall({
 
   useEffect(() => {
     if ((x !== 0 || y !== 0) && endAnimation && animation) {
+      console.log("HOLA");
       setAnimation(false);
     }
   }, [x, y, endAnimation]);
@@ -104,8 +107,8 @@ export default function MouseBall({
                 : "linear-gradient(45deg,#1c1d20 -100%, #0086d1 0%, #af4261 100%)",
             }}
             animate={{
-              width: size,
-              height: size,
+              width: "75px",
+              height: "75px",
               backgroundImage:
                 "linear-gradient(45deg,#1c1d20 -100%, #0086d1 0%, #af4261 100%)",
               transition: {
@@ -178,8 +181,8 @@ export default function MouseBall({
         >
           <motion.div
             style={{
-              width: size,
-              height: size,
+              width: "75px",
+              height: "75px",
               // opacity: `${size > 0 ? 1 : 0}%`,
               // backgroundColor: "red",
             }}
