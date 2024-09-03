@@ -2,12 +2,21 @@ import React from "react";
 import logo1 from "../public/images/logos/theogony.svg";
 import nextLogo from "../public/images/logos/es_recader.svg";
 import WorkPage from "../components/WorkPage";
+import uml from "../public/images/theogony/uml.svg";
+// import video from "../public/images/theogon/video.mp4";
+
+// import uml from `../public/images/${directory}/uml.svg`;
+// import video from `../public/images/${directory}/uml.svg`;
 
 function Theogony2() {
   const work = {
     title: "Theogony",
     subtitle: "Greek Gods Family Tree API",
     logo: logo1,
+    video: "",
+    images: {
+      uml: uml,
+    },
   };
 
   const texts = {
@@ -17,7 +26,7 @@ function Theogony2() {
           entire Greek Gods Family Tree from a child to its great, great,
           great... grandfather.`,
     role: "Development & Deploy",
-    page: "www.theogonia.net",
+    page: "docs.theogonia.net",
     why: `This is a personal project where I put myself a the challenge to
           create a public API for the community. As I couldn't find too many
           playful APIs for people to make a a code project.`,
