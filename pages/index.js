@@ -323,10 +323,9 @@ export default function Home() {
               I'm Noah and since a younger age I developed a passion for coding.
               </p> */}
             <p className={aboutme.text}>
-              I stay engaged from the first idea to the <br />
-              final result. I aim to create interactive <br />
-              and memorable user experiences <br />
-              by tailoring each step of the process.
+              I stay engaged from the first idea to the final result. I aim to
+              create interactive and memorable user experiences by tailoring
+              each step of the process.
             </p>
             {/* <p className={aboutme.text}>
               I enjoy starting new challenging projects and face new problems to
