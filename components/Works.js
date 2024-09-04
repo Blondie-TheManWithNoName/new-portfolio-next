@@ -139,7 +139,7 @@ export default function Works({ setShowBall }) {
           <div
             className={styles.videosContainer}
             style={{
-              top: `calc(-${100 * workIndex}% - ${10 * workIndex}rem + ${
+              top: `calc(-${100 * workIndex}% - ${10 * workIndex}vh + ${
                 workIndex * 4 + 2
               }vh)`,
             }}
