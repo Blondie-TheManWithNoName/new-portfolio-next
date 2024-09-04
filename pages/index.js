@@ -321,17 +321,131 @@ export default function Home() {
           <div className={aboutme.aboutMeText}>
             {/* <p className={aboutme.text}>
               I'm Noah and since a younger age I developed a passion for coding.
-            </p> */}
-            <p className={aboutme.text} style={{ marginTop: "5rem" }}>
-              I stay engaged from the first idea to the <br /> final result. My
-              main goal is to create <br />
-              interactive and memorable user <br />
-              experiences by tailoring each step.
+              </p> */}
+            <p className={aboutme.text}>
+              I stay engaged from the first idea to the <br />
+              final result. I aim to create interactive <br />
+              and memorable user experiences <br />
+              by tailoring each step of the process.
             </p>
             {/* <p className={aboutme.text}>
               I enjoy starting new challenging projects and face new problems to
               overcome myself.
-            </p> */}
+              </p> */}
+          </div>
+          <div className={aboutme.stack}>
+            {/* <div className={aboutme.line}></div> */}
+            <div className={classNames(aboutme.line, "smallText")}>
+              MY STACK
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/typescript.svg`}
+                alt={`Skill icon /skills/typescript.svg`}
+              />
+              <p>TypeScript</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/nodejs.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>NodeJS</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/nestjs.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>NestJS</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/typeorm.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>TypeORM</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/mysql.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>MySQL</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/aws.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>AWS</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/react.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>React</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/tailwind.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>TailWind</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/figma.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>Figma</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/git.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>Git</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/jwt.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>JWT</p>
+            </div>
+            <div className={aboutme.skillContainer}>
+              <img
+                key={`nestjs`}
+                // src={`/skills/aws.svg`}
+                src={`../skills/about-me/clickup.svg`}
+                alt={`Skill icon /skills/nestjs.svg`}
+              />
+              <p>ClickUp</p>
+            </div>
           </div>
         </section>
         {/* <Carousell></Carousell> */}

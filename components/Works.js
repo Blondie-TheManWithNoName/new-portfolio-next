@@ -19,7 +19,7 @@ export default function Works({ setShowBall }) {
   const { width, height } = useWindowSize();
   const HEIGHT = height * 3; // CHECK
   const router = useRouter();
-  const workTop = height * 1.7;
+  const workTop = height * 1.9;
   const scrollY = useScrollPosition();
   const handleStateChange = (status) => {
     console.log("status.status", status.status);
@@ -44,7 +44,7 @@ export default function Works({ setShowBall }) {
       setFixed(0);
       setOut(false);
     }
-    if (scrollY >= HEIGHT * logos.length + height * 0.7) {
+    if (scrollY >= HEIGHT * logos.length + height * 0.9) {
       setOut(true);
       setFixed(0);
     }
