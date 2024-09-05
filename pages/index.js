@@ -10,7 +10,6 @@ import classnames from "classnames";
 import MouseBall from "../components/MouseBall";
 import favicon from "../public/images/favicon.jpg";
 import hero from "../public/images/hero.jpg";
-import ogImage from "../public/images/ogImage.png";
 import { useEffect, useRef, useState } from "react";
 import { useCurrentTime } from "../hooks/useCurrentTime";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
@@ -77,6 +76,7 @@ export default function Home() {
     rootMargin: "0px",
     threshold: 0.96, // Trigger when 100% of the footer is in view
   });
+  const ogImage = "https://www.noahguardiola.com/images/ogImage.png";
 
   useEffect(() => {
     window.scrollTo(0, 0);
