@@ -15,26 +15,17 @@ import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
 export default function Works({ setShowBall }) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
+  const [scrollLocked, setScrollLocked] = useState(false);
   const [out, setOut] = useState(false);
   const { width, height } = useWindowSize();
   const HEIGHT = height * 3; // CHECK
   const router = useRouter();
   const workTop = height * 1.9;
   const scrollY = useScrollPosition();
-  const handleStateChange = (status) => {
-    console.log("status.status", status.status);
-    if (status.status === Sticky.STATUS_FIXED) {
-      setFixed(scrollY);
-    } else {
-      setFixed(false);
-    }
+
+  const handleFocus = (index) => {
+    setWorkIndex(index);
   };
-
-  useEffect(() => {
-    // console.log("fixed", fixed);
-
-    return () => {};
-  }, [fixed]);
 
   useEffect(() => {
     if (scrollY >= workTop && fixed !== workTop) {
@@ -45,25 +36,40 @@ export default function Works({ setShowBall }) {
       setOut(false);
     }
     if (scrollY >= HEIGHT * logos.length + height * 0.9) {
-      setOut(true);
       setFixed(0);
+      setOut(true);
     }
   }, [scrollY]);
 
   useEffect(() => {
     // console.log("hola", scrollY - fixed, ">=", HEIGHT * (workIndex + 1));
     if (fixed) {
-      if (scrollY - fixed >= HEIGHT * (workIndex + 1)) {
+      if (
+        scrollY - fixed >= HEIGHT * (workIndex + 1) &&
+        scrollY - fixed < HEIGHT * (workIndex + 2) &&
+        !scrollLocked
+      ) {
+        console.log("");
         setWorkIndex(workIndex + 1);
       }
-      if (scrollY - fixed < HEIGHT * workIndex) {
+      if (
+        scrollY - fixed < HEIGHT * workIndex &&
+        scrollY - fixed >= HEIGHT * (workIndex - 1) &&
+        !scrollLocked
+      ) {
         setWorkIndex(workIndex - 1);
       }
     }
 
     return () => {};
-  }, [scrollY, fixed, workIndex]);
+  }, [scrollY, fixed, workIndex, scrollLocked]);
 
+  const handleKeyDown = (index, event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent the default action
+      router.push(titles[index].page); // Trigger the click handler
+    }
+  };
   const container = useRef();
 
   return (
@@ -157,11 +163,15 @@ export default function Works({ setShowBall }) {
                     muted
                     loop
                     autoPlay
+                    // tabindex="0"
+                    // role="link"
+                    // onFocus={() => handleFocus(index)}
                     onMouseEnter={() =>
                       setShowBall({ show: true, text: "View" })
                     }
                     onMouseLeave={() => setShowBall({ show: false, text: "" })}
                     onClick={() => router.push(titles[index].page)}
+                    onKeyDown={(event) => handleKeyDown(index, event)} // Handle keydown
                   >
                     <source
                       src={`/videos/${videos[index]}-compressed.mp4`}
