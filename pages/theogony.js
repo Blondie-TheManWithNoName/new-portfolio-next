@@ -27,9 +27,12 @@ function Theogony2() {
           great... grandfather.`,
     role: "Development & Deploy",
     page: "docs.theogonia.net",
-    why: `This is a personal project where I put myself a the challenge to
+    why: `This is a personal project where I put myself a challenge to
           create a public API for the community. As I couldn't find too many
-          playful APIs for people to make a a code project.`,
+          playful APIs to make a coding project. I decided to create this API
+           as I've always found the Greek Gods family trees very complicated and confusing.
+           With this API you can follow a lineage with ease without the problem of having to follow
+           a long line to get to a child.`,
   };
 
   const pills = [

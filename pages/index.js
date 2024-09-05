@@ -209,7 +209,11 @@ export default function Home() {
     <>
       <Head>
         <title>Noah Guardiola • Web Developer</title>
-        <meta property="og:title" content="My page title" key="title" />
+        <meta
+          property="og:title"
+          content="Noah Guardiola • Web Developer"
+          key="Noah Guardiola • Web Developer"
+        />
       </Head>
 
       <header className={intro.header} style={{ position: "absolute" }}>

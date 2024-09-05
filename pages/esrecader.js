@@ -22,8 +22,12 @@ function EsRecader() {
 
     role: "Design & Development",
     page: "Not deployed yet",
-    why: `I kept the information 
-              short and concise with an easy-to-follow flow that lets the user have an undertanding of the  company with a quick peak.`,
+    why: `Es Recader had an old website that didn't respect UI/UX principles and 
+    it didn't express enough personlaity or clarifed the services. So I redesigned their logo, with a more
+    dynamic and modern look and changed their branding colors for a more adequate one for websites. I also kept the information 
+    short and concise with an easy-to-follow flow that lets the user have an undertanding of the company with a quick peak.
+    As a delivery company I focused on dynamism and movement, thats why I did a couple SVG animations to have a visual impact on the user
+    and transmit the feeling of speed.`,
   };
 
   const pills = [
@@ -35,7 +39,7 @@ function EsRecader() {
     "Sass",
     "SVG",
     "Figma",
-    "Animations",
+    "Framer Motion",
   ];
 
   const nextWork = {
