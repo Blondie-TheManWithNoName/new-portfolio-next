@@ -224,7 +224,7 @@ export default function Home() {
         )}
         style={{ position: "fixed" }}
       >
-        <a href="" style={{ color: headerColor }}>
+        <a href="" style={{ color: headerColor }} tabindex="-1">
           Noah Guardiola
         </a>
       </header>

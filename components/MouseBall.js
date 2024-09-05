@@ -50,7 +50,6 @@ export default function MouseBall({
 
   useEffect(() => {
     if ((x !== 0 || y !== 0) && endAnimation && animation) {
-      console.log("HOLA");
       setAnimation(false);
     }
   }, [x, y, endAnimation]);
@@ -63,9 +62,7 @@ export default function MouseBall({
     //   Update the hovered state
     if (isHovered) setSize(pixelSize);
   }, [scrollY]);
-  useEffect(() => {
-    console.log("width", width);
-  }, [width]);
+  useEffect(() => {}, [width]);
 
   return (
     <>
