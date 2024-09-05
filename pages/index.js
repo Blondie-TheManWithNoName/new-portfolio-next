@@ -8,7 +8,7 @@ import aboutme from "../styles/aboutme.module.scss";
 import footer from "../styles/footer.module.scss";
 import classnames from "classnames";
 import MouseBall from "../components/MouseBall";
-import favicon from "../public/images/favicon.png";
+import favicon from "../public/images/favicon.jpg";
 import hero from "../public/images/hero.jpg";
 import ogImage from "../public/images/ogImage.png";
 import { useEffect, useRef, useState } from "react";
@@ -519,7 +519,12 @@ export default function Home() {
         <footer className={footer.footer} ref={footerRef}>
           <div className={footer.connectContainer}>
             <div className={footer.topLine}>
-              <Image src={favicon} className={footer.favicon}></Image>
+              <Image
+                src={favicon}
+                className={footer.favicon}
+                width={200}
+                height={200}
+              ></Image>
               {/* <p>Let's</p> */}
               <p className={footer.bottomLine}>
                 Let's <br />
