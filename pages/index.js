@@ -9,6 +9,8 @@ import footer from "../styles/footer.module.scss";
 import classnames from "classnames";
 import MouseBall from "../components/MouseBall";
 import favicon from "../public/images/favicon.png";
+import hero from "../public/images/hero.jpg";
+import ogImage from "../public/images/ogImage.png";
 import { useEffect, useRef, useState } from "react";
 import { useCurrentTime } from "../hooks/useCurrentTime";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
@@ -210,10 +212,53 @@ export default function Home() {
       <Head>
         <title>Noah Guardiola • Web Developer</title>
         <meta
-          property="og:title"
-          content="Noah Guardiola • Web Developer"
-          key="Noah Guardiola • Web Developer"
+          name="description"
+          content="Noah, Web Developer developing interactive and memorable user experiences. Creating tailored designs from scratch with cutting-edge techonlogy."
+          key="desc"
         />
+        {/* Canonical Tag */}
+        <link rel="canonical" href="https://www.noahguardiola.com/" />
+
+        {/* Meta Robots */}
+        {/* <meta name="robots" content="index, follow" /> */}
+
+        {/* Open Graph Meta Tags */}
+        <meta
+          property="og:site_name"
+          content="Noah Guardiola • Web Developer"
+        />
+        <meta property="og:title" content="Noah Guardiola • Web Developer" />
+        <meta
+          property="og:description"
+          content="Web Developer developing interactive and memorable user experiences. Creating tailored designs from scratch with cutting-edge techonlogy."
+        />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content="https://www.noahguardiola.com/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="" />
+        <meta name="twitter:title" content="Noah Guardiola • Web Developer" />
+        <meta
+          name="twitter:description"
+          content="Web Developer developing interactive and memorable user experiences. Creating tailored designs from scratch with cutting-edge techonlogy."
+        />
+        <meta name="twitter:image" content={ogImage} />
+
+        {/* Viewport Meta Tag */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {/* Charset Meta Tag */}
+        <meta charSet="UTF-8" />
+
+        {/* Language Meta Tag */}
+        <meta httpEquiv="Content-Language" content="en" />
+
+        {/* Content Type Meta Tag */}
+        <meta http-equiv="Content-Type" content="text/html" />
+
+        {/* Author Meta Tag */}
+        <meta name="author" content="Noah" />
       </Head>
 
       <header className={intro.header} style={{ position: "absolute" }}>
@@ -247,13 +292,16 @@ export default function Home() {
             onMouseLeave={() => setShowBall({ show: false, text: "" })}
           >
             <motion.div className={intro.introPic} style={{ y: yPic }}>
-              <img
-                src="../images/hero.jpg"
+              <Image
+                src={hero}
                 alt="Noah"
                 draggable="false"
                 userSelect="none"
                 pointerEvents="none"
                 onmousedown="return false"
+                width={3428}
+                height={4568}
+                className={intro.heroImg}
                 style={{ userSelect: "none", pointerEvents: "none" }}
               />
             </motion.div>
