@@ -231,7 +231,11 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
 
           <div className={styles.mockupContainer}>
             <div className={styles.mockupLg}>
-              <Image src={mockupLg} className={styles.mockupLgImage} />
+              <Image
+                src={mockupLg}
+                className={styles.mockupLgImage}
+                alt="Laptop Mockup"
+              />
               <div>
                 <video muted loop autoPlay>
                   <source src={`/videos/${work.video}.mp4`} type="video/mp4" />
@@ -264,6 +268,7 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
                   height: "100%",
                   width: "65%",
                 }}
+                alt="Project Diagram"
               />
             ) : (
               <>
@@ -271,12 +276,14 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
                   <Image
                     src={work.images.screen1}
                     style={{ objectFit: "cover", height: "100%" }}
+                    alt="Phone Web view"
                   />
                 </motion.div>
                 <motion.div style={{ y: transformLeftY }}>
                   <Image
                     src={work.images.screen2}
                     style={{ objectFit: "cover", height: "100%" }}
+                    alt="Phone Web view"
                   />
                 </motion.div>
               </>

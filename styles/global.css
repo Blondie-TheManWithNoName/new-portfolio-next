@@ -115,7 +115,7 @@ img {
 
 .stickyContainer {
   display: grid;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .top {

@@ -273,7 +273,7 @@ export default function Home() {
         )}
         style={{ position: "fixed" }}
       >
-        <a href="" style={{ color: headerColor }} tabindex="-1">
+        <a href="" style={{ color: headerColor }} tabIndex="-1">
           Noah Guardiola
         </a>
       </header>
@@ -294,11 +294,10 @@ export default function Home() {
             <motion.div className={intro.introPic} style={{ y: yPic }}>
               <Image
                 src={hero}
+                priority={true}
                 alt="Noah"
                 draggable="false"
-                userSelect="none"
                 pointerEvents="none"
-                onmousedown="return false"
                 width={3428}
                 height={4568}
                 className={intro.heroImg}
@@ -524,6 +523,7 @@ export default function Home() {
                 className={footer.favicon}
                 width={200}
                 height={200}
+                alt="Noah"
               ></Image>
               {/* <p>Let's</p> */}
               <p className={footer.bottomLine}>

@@ -75,7 +75,7 @@ export default function Works({ setShowBall }) {
   return (
     <div
       className={styles.stickyContainer}
-      style={{ height: HEIGHT * logos.length }}
+      style={{ position: "relative", height: HEIGHT * logos.length }}
     >
       {/* <Sticky
         top={0}
@@ -99,7 +99,7 @@ export default function Works({ setShowBall }) {
             }}
           >
             {backgrounds.map((background, index) => (
-              <div className={styles.background}>
+              <div className={styles.background} key={`background-${index}`}>
                 {fixed && (
                   <ParallaxImage
                     key={index}
@@ -133,11 +133,11 @@ export default function Works({ setShowBall }) {
               top: `calc(-${100 * workIndex}% - ${4 * workIndex}rem)`,
             }}
           >
-            {titles.map((title) => (
-              <>
+            {titles.map((title, index) => (
+              <React.Fragment key={`title-${index}`}>
                 <h2>{title.title}</h2>
                 <h3>{title.description}</h3>
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -158,12 +158,12 @@ export default function Works({ setShowBall }) {
               } else {
                 return (
                   <video
-                    key={index} // Added key prop for React list rendering
+                    key={`video-${index}`}
                     className={styles.video}
                     muted
                     loop
                     autoPlay
-                    // tabindex="0"
+                    // tabIndex="0"
                     // role="link"
                     // onFocus={() => handleFocus(index)}
                     onMouseEnter={() =>
@@ -186,7 +186,10 @@ export default function Works({ setShowBall }) {
         </div>
         <section className={styles.skills}>
           {skills[0].map((skill, indexSkills) => (
-            <motion.div className={styles.skillsWrapped} key={indexSkills}>
+            <motion.div
+              className={styles.skillsWrapped}
+              key={`skill-${indexSkills}`}
+            >
               <div
                 className={styles.skillsContainer}
                 style={{
@@ -203,7 +206,7 @@ export default function Works({ setShowBall }) {
                       alt={`Skill icon ${indexWork}-${indexSkills}`}
                     />
                   ) : (
-                    <div></div>
+                    <div key={`empty-${indexWork}-${indexSkills}`}></div>
                   )
                 )}
               </div>
@@ -223,8 +226,9 @@ export default function Works({ setShowBall }) {
                 width: workIndex === index ? "6rem" : "4rem",
                 height: workIndex === index ? "6rem" : "4rem",
               }}
+              key={`logo-${index}`}
             >
-              <img src={logo?.src} alt="Project Logo" />
+              <img src={logo?.src} alt={`Project Logo ${index}`} />
             </div>
           ))}
         </div>
@@ -241,6 +245,7 @@ function workTitle(setShowBall) {
       className={classnames(styles.workTitle, styles.mouseBallHover)}
       onMouseEnter={() => setShowBall({ show: true, text: "Scroll" })}
       onMouseLeave={() => setShowBall({ show: false, text: "Scroll" })}
+      key={`work-title-${0}`}
     >
       <h2 style={{ position: "relative" }}>
         <div className={classnames(intro.gradientText, styles.recentTitle)}>
@@ -258,6 +263,7 @@ function moreWorkTitle(setShowBall) {
       className={classnames(styles.workTitle, styles.mouseBallHover)}
       onMouseEnter={() => setShowBall({ show: true, text: "Coming Soon" })}
       onMouseLeave={() => setShowBall({ show: false, text: "" })}
+      key={`work-title-${1}`}
     >
       <h2 style={{ position: "relative" }}>
         <div
