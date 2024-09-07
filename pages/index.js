@@ -211,13 +211,6 @@ export default function Home() {
             const maxDuration = isScrollingDown ? 25 : firstVelocity.speed; // Max duration at the slowest point
             const duration =
               minDuration + easedScroll * (maxDuration - minDuration);
-            console.log(
-              "wat",
-              duration,
-              firstVelocity.speed,
-              "/",
-              lenis.velocity
-            );
             // : maxDuration - easedScroll * (maxDuration - minDuration);
             // console.log(
             //   "velocity",
@@ -240,12 +233,7 @@ export default function Home() {
           } else if (scroll > endPoint && firstVelocity.set) {
             // Reset to default duration after passing the endPoint
             firstVelocity.set = false;
-            // lenis.options.duration = 1.2;
-
-            changeScrollDuration([
-              { duration: 20, delay: 0 }, // Restore to default
-              { duration: 1.2, delay: 1000 }, // Restore to default
-            ]);
+            lenis.options.duration = 1.2;
           }
         } else {
           // If scrolling up, reset to default duration

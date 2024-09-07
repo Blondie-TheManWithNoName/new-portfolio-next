@@ -9,7 +9,6 @@ import classnames from "classnames";
 import { useRouter } from "next/router";
 
 import { motion } from "framer-motion";
-import Sticky from "react-stickynode";
 import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
 
 export default function Works({ setShowBall, elementRef }) {
@@ -101,28 +100,26 @@ export default function Works({ setShowBall, elementRef }) {
             {backgrounds.map((background, index) => (
               <div className={styles.background} key={`background-${index}`}>
                 {fixed && (
-                  // <ParallaxImage
-                  //   key={`bg-${index}`}
-                  //   path={background.path}
-                  //   fixedPositions={background.background}
-                  //   className={background.className}
-                  //   startOffset={fixed + index * HEIGHT}
-                  //   endOffset={fixed + (index + 1) * HEIGHT}
-                  //   move={-800}
-                  // />
-                  <div></div>
+                  <ParallaxImage
+                    key={`bg-${index}-1`}
+                    path={background.path}
+                    fixedPositions={background.background}
+                    className={background.className}
+                    startOffset={fixed + index * HEIGHT}
+                    endOffset={fixed + (index + 1) * HEIGHT}
+                    move={-800}
+                  />
                 )}
                 {fixed && background.background2 && (
-                  <div></div>
-                  // <ParallaxImage
-                  //   key={`bg-${index}-2`}
-                  //   path={background.path}
-                  //   fixedPositions={background.background2}
-                  //   className={background.className}
-                  //   startOffset={fixed + index * HEIGHT}
-                  //   endOffset={fixed + (index + 1) * HEIGHT}
-                  //   move={-500}
-                  // />
+                  <ParallaxImage
+                    key={`bg-${index}-2`}
+                    path={background.path}
+                    fixedPositions={background.background2}
+                    className={background.className}
+                    startOffset={fixed + index * HEIGHT}
+                    endOffset={fixed + (index + 1) * HEIGHT}
+                    move={-500}
+                  />
                 )}
               </div>
             ))}

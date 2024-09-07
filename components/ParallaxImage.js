@@ -28,6 +28,7 @@ const ParallaxImage = ({
       {fixedPositions &&
         fixedPositions.map((style, index) => (
           <PathImage
+            key={`path-image-${index}`}
             image={
               Array.isArray(path) ? path[index % path.length].src : path?.src
             }
