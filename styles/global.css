@@ -174,3 +174,16 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+.sticky-element {
+  width: 100%;
+  background-color: blue;
+  padding: 20px;
+  /* Start with relative positioning */
+  position: relative;
+  top: 0;
+  z-index: 100;
+  transition: position 0.3s ease;
+  font-size: 50vw;
+  color: aliceblue;
+}

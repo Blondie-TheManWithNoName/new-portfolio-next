@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import Sticky from "react-stickynode";
 import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
 
-export default function Works({ setShowBall }) {
+export default function Works({ setShowBall, elementRef }) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
   const [scrollLocked, setScrollLocked] = useState(false);
@@ -49,7 +49,6 @@ export default function Works({ setShowBall }) {
         scrollY - fixed < HEIGHT * (workIndex + 2) &&
         !scrollLocked
       ) {
-        console.log("");
         setWorkIndex(workIndex + 1);
       }
       if (
@@ -85,11 +84,12 @@ export default function Works({ setShowBall }) {
       > */}
       <div
         className={styles.workContainer}
-        style={{
-          position: fixed ? "fixed" : out ? "absolute" : "relative",
-          ...(out && { bottom: 0 }),
-          ...(fixed && { top: 0 }),
-        }}
+        ref={elementRef}
+        // style={{
+        //   position: fixed ? "fixed" : out ? "absolute" : "relative",
+        //   ...(out && { bottom: 0 }),
+        //   ...(fixed && { top: 0 }),
+        // }}
       >
         <div className={styles.backgroundWrapper}>
           <div
@@ -101,26 +101,28 @@ export default function Works({ setShowBall }) {
             {backgrounds.map((background, index) => (
               <div className={styles.background} key={`background-${index}`}>
                 {fixed && (
-                  <ParallaxImage
-                    key={index}
-                    path={background.path}
-                    fixedPositions={background.background}
-                    className={background.className}
-                    startOffset={fixed + index * HEIGHT}
-                    endOffset={fixed + (index + 1) * HEIGHT}
-                    move={-800}
-                  />
+                  // <ParallaxImage
+                  //   key={`bg-${index}`}
+                  //   path={background.path}
+                  //   fixedPositions={background.background}
+                  //   className={background.className}
+                  //   startOffset={fixed + index * HEIGHT}
+                  //   endOffset={fixed + (index + 1) * HEIGHT}
+                  //   move={-800}
+                  // />
+                  <div></div>
                 )}
                 {fixed && background.background2 && (
-                  <ParallaxImage
-                    key={`${index}-2`}
-                    path={background.path}
-                    fixedPositions={background.background2}
-                    className={background.className}
-                    startOffset={fixed + index * HEIGHT}
-                    endOffset={fixed + (index + 1) * HEIGHT}
-                    move={-500}
-                  />
+                  <div></div>
+                  // <ParallaxImage
+                  //   key={`bg-${index}-2`}
+                  //   path={background.path}
+                  //   fixedPositions={background.background2}
+                  //   className={background.className}
+                  //   startOffset={fixed + index * HEIGHT}
+                  //   endOffset={fixed + (index + 1) * HEIGHT}
+                  //   move={-500}
+                  // />
                 )}
               </div>
             ))}

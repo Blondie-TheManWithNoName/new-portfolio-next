@@ -13,6 +13,8 @@ import hero from "../public/images/hero.jpg";
 import { useEffect, useRef, useState } from "react";
 import { useCurrentTime } from "../hooks/useCurrentTime";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import LenisScroll from "../components/LenisScroll";
+import BezierEasing from "bezier-easing";
 
 import Lenis from "lenis";
 import {
@@ -70,6 +72,13 @@ export default function Home() {
   const [headerColor, setHeaderColor] = useState("white");
   const [headerFixed, setHeaderFixed] = useState(false);
   const footerRef = useRef(null);
+  const stickyElementRef = useRef(null);
+  const { width, height } = useWindowSize();
+  const lenisRef = useRef(null);
+  const timeoutsRef = useRef([]);
+  const isFixedRef = useRef(false);
+  const previousScrollRef = useRef(0);
+  const firstVelocity = useRef({ set: false, speed: 0 });
 
   const isFooterAtTop = useIntersectionObserver(footerRef, {
     root: null, // The viewport
@@ -122,9 +131,38 @@ export default function Home() {
   }, []);
 
   const ballRef = useRef(null);
-  useEffect(() => {
-    const lenis = new Lenis();
+  // useEffect(() => {
+  //   const lenis = new Lenis();
 
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
+
+  //   requestAnimationFrame(raf);
+
+  //   // lenis.on("scroll", ({ scroll }) => {
+  //   //   console.log("isScrolling:", lenis.isScrolling);
+  //   // });
+
+  //   return () => {
+  //     lenis.destroy();
+  //   };
+  // }, []);
+
+  const easingIn = BezierEasing(0.88, 0, 1, 0.41);
+  const easingOut = BezierEasing(0.03, 0.82, 0.2, 0.99);
+  useEffect(() => {
+    // Initialize Lenis only once on component mount
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+    });
+
+    lenisRef.current = lenis;
+
+    // Animation loop
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -132,17 +170,113 @@ export default function Home() {
 
     requestAnimationFrame(raf);
 
-    // lenis.on("scroll", ({ scroll }) => {
-    //   console.log("isScrolling:", lenis.isScrolling);
-    // });
-
-    return () => {
-      lenis.destroy();
+    const changeScrollDuration = (durations) => {
+      durations.forEach(({ duration, delay }, index) => {
+        const timeout = setTimeout(() => {
+          lenis.options.duration = duration;
+        }, delay);
+        timeoutsRef.current.push(timeout);
+      });
     };
-  }, []);
+
+    // Scroll event listener logic
+    const handleScroll = ({ scroll }) => {
+      if (stickyElementRef.current !== null) {
+        const triggerPoint = height * 1.9; // Adjust based on your needs
+        // Detect scroll direction
+        const isScrollingDown = scroll > previousScrollRef.current;
+        // Define the start and end points for the scroll effect
+        const startPoint = isScrollingDown ? height * 1 : height * 1.5;
+        const endPoint = height * 1.9;
+
+        // Select the appropriate easing curve based on scroll direction
+        const easing = isScrollingDown ? easingIn : easingOut;
+        // Only apply the easing effect between startPoint and endPoint
+        if (isScrollingDown) {
+          if (scroll >= startPoint && scroll <= endPoint) {
+            if (!firstVelocity.set) {
+              firstVelocity.speed = lenis.velocity;
+              firstVelocity.set = true;
+            }
+            // Normalize scroll position within the range [startPoint, endPoint]
+            const normalizedScroll =
+              (scroll - startPoint) / (endPoint - startPoint);
+
+            // const normalizedVelocity = lenis.velocity / firstVelocity.speed;
+            // const easedScroll = easing(Math.max(1 - normalizedVelocity, 0)); // Apply easing curve
+            const easedScroll = easing(normalizedScroll); // Apply easing curve
+
+            // Map easedScroll to duration * 6
+            const minDuration = 1.2;
+            const maxDuration = isScrollingDown ? 25 : firstVelocity.speed; // Max duration at the slowest point
+            const duration =
+              minDuration + easedScroll * (maxDuration - minDuration);
+            console.log(
+              "wat",
+              duration,
+              firstVelocity.speed,
+              "/",
+              lenis.velocity
+            );
+            // : maxDuration - easedScroll * (maxDuration - minDuration);
+            // console.log(
+            //   "velocity",
+            //   lenis.velocity,
+            //   duration,
+            //   normalizedVelocity,
+            //   easedScroll
+            // );
+            // console.log(
+            //   isScrollingDown
+            //     ? `${minDuration} + ${easedScroll} * (${maxDuration} - ${minDuration});`
+            //     : `${maxDuration} - ${easedScroll} * (${maxDuration} - ${minDuration});`
+            // );
+            // console.log("duration", duration, isScrollingDown, normalizedScroll);
+            lenis.options.duration = duration;
+          } else if (scroll < startPoint && firstVelocity.set) {
+            // Reset to default duration before reaching the startPoint
+            lenis.options.duration = 1.2;
+            firstVelocity.set = false;
+          } else if (scroll > endPoint && firstVelocity.set) {
+            // Reset to default duration after passing the endPoint
+            firstVelocity.set = false;
+            // lenis.options.duration = 1.2;
+
+            changeScrollDuration([
+              { duration: 20, delay: 0 }, // Restore to default
+              { duration: 1.2, delay: 1000 }, // Restore to default
+            ]);
+          }
+        } else {
+          // If scrolling up, reset to default duration
+          lenis.options.duration = 1.2;
+        }
+
+        previousScrollRef.current = scroll;
+
+        if (scroll > triggerPoint && !isFixedRef.current) {
+          isFixedRef.current = true;
+          stickyElementRef.current.style.position = "fixed";
+          stickyElementRef.current.style.top = "0";
+          lenis.options.duration = 1.2;
+        } else if (scroll <= triggerPoint && isFixedRef.current) {
+          isFixedRef.current = false;
+          stickyElementRef.current.style.position = "relative";
+        }
+      }
+    };
+
+    lenis.on("scroll", handleScroll);
+
+    // Cleanup on component unmount
+    return () => {
+      lenis.off("scroll", handleScroll);
+      lenis.destroy();
+      timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
+    };
+  }, [height]);
 
   const scrollY = useScrollPosition();
-  const { width, height } = useWindowSize();
 
   useEffect(() => {
     if (scrollY >= height * 1.15) setHeaderFixed(true);
@@ -498,6 +632,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* <LenisScroll /> */}
+
         {/* <Carousell></Carousell> */}
         {/* </section> */}
         {/* <section className={aboutme.aboutMe}>
@@ -505,7 +641,7 @@ export default function Home() {
             <h2 className={intro.gradientText}>WORK</h2>
           </div>
         </section> */}
-        <Works setShowBall={setShowBall} />
+        <Works setShowBall={setShowBall} elementRef={stickyElementRef} />
         {/* <section
           className={aboutme.contact}
           style={{ height: "200vh", marginTop: "20rem" }}
