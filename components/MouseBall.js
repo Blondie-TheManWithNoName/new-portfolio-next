@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import useMousePosition from "../hooks/useMousePosition";
-import useScrollPosition from "../hooks/useScrollPosition";
 import styles from "../styles/work.module.scss";
 import { motion } from "framer-motion";
 import useWindowSize from "../hooks/useWIndowSize";
@@ -10,6 +9,7 @@ export default function MouseBall({
   xStartProp,
   yStartProp,
   ballAnimation,
+  scrollY,
 }) {
   const pixelSize = 75;
   const [size, setSize] = useState(ballAnimation ? pixelSize : 0);
@@ -21,7 +21,6 @@ export default function MouseBall({
   const { x, y } = useMousePosition();
 
   const { width, height } = useWindowSize();
-  const scrollY = useScrollPosition();
 
   useEffect(() => {
     if (x !== 0 && y !== 0) {

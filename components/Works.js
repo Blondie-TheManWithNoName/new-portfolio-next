@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/work.module.scss";
 import intro from "../styles/intro.module.scss";
 import ParallaxImage from "./ParallaxImage";
-import useScrollPosition from "../hooks/useScrollPosition";
 import useWindowSize from "../hooks/useWIndowSize";
 
 import classnames from "classnames";
@@ -11,7 +10,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
 
-export default function Works({ setShowBall, elementRef }) {
+export default function Works({ setShowBall, elementRef, scrollY }) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
   const [scrollLocked, setScrollLocked] = useState(false);
@@ -20,23 +19,22 @@ export default function Works({ setShowBall, elementRef }) {
   const HEIGHT = height * 3; // CHECK
   const router = useRouter();
   const workTop = height * 1.9;
-  const scrollY = useScrollPosition();
 
   const handleFocus = (index) => {
     setWorkIndex(index);
   };
 
   useEffect(() => {
-    if (scrollY >= workTop && fixed !== workTop) {
-      setFixed(workTop);
-    }
-    if (scrollY < workTop) {
+    if (scrollY >= workTop) {
+      if (scrollY >= HEIGHT * (logos.length - 1) + height * 2 + height * 0.9) {
+        setFixed(0);
+        setOut(true);
+      } else if (scrollY >= workTop && fixed !== workTop) {
+        setFixed(workTop);
+      }
+    } else if (scrollY < workTop) {
       setFixed(0);
       setOut(false);
-    }
-    if (scrollY >= HEIGHT * logos.length + height * 0.9) {
-      setFixed(0);
-      setOut(true);
     }
   }, [scrollY]);
 
@@ -44,15 +42,17 @@ export default function Works({ setShowBall, elementRef }) {
     // console.log("hola", scrollY - fixed, ">=", HEIGHT * (workIndex + 1));
     if (fixed) {
       if (
-        scrollY - fixed >= HEIGHT * (workIndex + 1) &&
-        scrollY - fixed < HEIGHT * (workIndex + 2) &&
+        scrollY - fixed >=
+          (workIndex === 0 ? height * 2 : HEIGHT) * (workIndex + 1) &&
+        // scrollY - fixed <
+        //   (workIndex === 0 ? height * 2 : HEIGHT) * (workIndex + 2) &&
         !scrollLocked
       ) {
         setWorkIndex(workIndex + 1);
-      }
-      if (
-        scrollY - fixed < HEIGHT * workIndex &&
-        scrollY - fixed >= HEIGHT * (workIndex - 1) &&
+      } else if (
+        scrollY - fixed < (workIndex === 1 ? height * 2 : HEIGHT) * workIndex &&
+        // scrollY - fixed >=
+        //   (workIndex === 0 ? height * 2 : HEIGHT) * (workIndex - 1) &&
         !scrollLocked
       ) {
         setWorkIndex(workIndex - 1);
@@ -73,7 +73,11 @@ export default function Works({ setShowBall, elementRef }) {
   return (
     <div
       className={styles.stickyContainer}
-      style={{ position: "relative", height: HEIGHT * logos.length }}
+      style={{
+        position: "relative",
+        height: HEIGHT * logos.length,
+        backgroundColor: "red",
+      }}
     >
       {/* <Sticky
         top={0}

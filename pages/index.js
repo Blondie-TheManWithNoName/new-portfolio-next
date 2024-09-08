@@ -114,19 +114,19 @@ export default function Home() {
     const resize = () => {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
     };
-    const onScroll = () => {
-      setX(transform(window.scrollY, [0, window.innerHeight], [0, 500]));
-      const res = getHeight(window.scrollY, window.innerHeight);
-      setHeightTop({ top: res.top, bottom: res.bottom });
-      setShadow({ top: res.shadowTop, bottom: res.shadowBot });
-    };
+    // const onScroll = () => {
+    //   setX(transform(window.scrollY, [0, window.innerHeight], [0, 500]));
+    // const res = getHeight(window.scrollY, window.innerHeight);
+    //   setHeightTop({ top: res.top, bottom: res.bottom });
+    //   setShadow({ top: res.shadowTop, bottom: res.shadowBot });
+    // };
     resize();
 
     window.addEventListener("resize", resize);
-    window.addEventListener("scroll", onScroll);
+    // window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", onScroll);
+      // window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -183,6 +183,7 @@ export default function Home() {
     const handleScroll = ({ scroll }) => {
       if (stickyElementRef.current !== null) {
         const triggerPoint = height * 1.9; // Adjust based on your needs
+        const triggerPointOut = height * 3 * 5 + height * 2 + height * 1.9; // Adjust based on your needs
         // Detect scroll direction
         const isScrollingDown = scroll > previousScrollRef.current;
         // Define the start and end points for the scroll effect
@@ -242,10 +243,17 @@ export default function Home() {
 
         previousScrollRef.current = scroll;
 
-        if (scroll > triggerPoint && !isFixedRef.current) {
-          isFixedRef.current = true;
-          stickyElementRef.current.style.position = "fixed";
-          stickyElementRef.current.style.top = "0";
+        if (scroll > triggerPoint) {
+          if (scroll > triggerPointOut) {
+            isFixedRef.current = false;
+            stickyElementRef.current.style.position = "absolute";
+            stickyElementRef.current.style.bottom = "0%";
+            stickyElementRef.current.style.top = null;
+          } else if (scroll > triggerPoint && !isFixedRef.current) {
+            isFixedRef.current = true;
+            stickyElementRef.current.style.position = "fixed";
+            stickyElementRef.current.style.top = "0%";
+          }
           lenis.options.duration = 1.2;
         } else if (scroll <= triggerPoint && isFixedRef.current) {
           isFixedRef.current = false;
@@ -267,9 +275,11 @@ export default function Home() {
   const scrollY = useScrollPosition();
 
   useEffect(() => {
-    if (scrollY >= height * 1.15) setHeaderFixed(true);
-    else setHeaderFixed(false);
-  }, [scrollY]);
+    const shouldFixHeader = scrollY >= height * 1.15;
+    if (headerFixed !== shouldFixHeader) {
+      setHeaderFixed(shouldFixHeader);
+    }
+  }, [scrollY, headerFixed]);
 
   useEffect(() => {
     if (isFooterAtTop) setHeaderColor("white");
@@ -405,6 +415,7 @@ export default function Home() {
           ballAnimation={true}
           xStartProp={0}
           yStartProp={0}
+          scrollY={scrollY}
         />
         <section className={intro.introSection}>
           {/* <BallAnimation ref={ballRef} /> */}
@@ -629,7 +640,11 @@ export default function Home() {
             <h2 className={intro.gradientText}>WORK</h2>
           </div>
         </section> */}
-        <Works setShowBall={setShowBall} elementRef={stickyElementRef} />
+        <Works
+          setShowBall={setShowBall}
+          elementRef={stickyElementRef}
+          scrollY={scrollY}
+        />
         {/* <section
           className={aboutme.contact}
           style={{ height: "200vh", marginTop: "20rem" }}
