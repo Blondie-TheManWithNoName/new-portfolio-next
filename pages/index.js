@@ -13,7 +13,6 @@ import hero from "../public/images/hero.jpg";
 import { useEffect, useRef, useState } from "react";
 import { useCurrentTime } from "../hooks/useCurrentTime";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-import LenisScroll from "../components/LenisScroll";
 import BezierEasing from "bezier-easing";
 
 import Lenis from "lenis";
@@ -631,7 +630,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* <LenisScroll /> */}
 
         {/* <Carousell></Carousell> */}
         {/* </section> */}
