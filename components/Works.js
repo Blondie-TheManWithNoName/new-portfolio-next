@@ -10,7 +10,12 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
 
-export default function Works({ setShowBall, elementRef, scrollY }) {
+export default function Works({
+  setShowBall,
+  elementRef,
+  scrollY,
+  handleClick,
+}) {
   const [workIndex, setWorkIndex] = useState(0);
   const [fixed, setFixed] = useState(0);
   const [scrollLocked, setScrollLocked] = useState(false);
@@ -22,6 +27,11 @@ export default function Works({ setShowBall, elementRef, scrollY }) {
 
   const handleFocus = (index) => {
     setWorkIndex(index);
+  };
+
+  const handleClickLogo = (index) => {
+    // setWorkIndex(index);
+    handleClick(index);
   };
 
   useEffect(() => {
@@ -219,7 +229,9 @@ export default function Works({ setShowBall, elementRef, scrollY }) {
         <div
           className={styles.logosContainer}
           style={{
-            marginTop: `calc(52vh - ${5 * workIndex}rem)`,
+            marginTop: `calc(${52}vh - ${4 * workIndex}vw - ${
+              2 * workIndex
+            }vh)`,
           }}
         >
           {logos.map((logo, index) => (
@@ -229,6 +241,7 @@ export default function Works({ setShowBall, elementRef, scrollY }) {
                 width: workIndex === index ? "6rem" : "4rem",
                 height: workIndex === index ? "6rem" : "4rem",
               }}
+              onClick={() => handleClickLogo(index)}
               key={`logo-${index}`}
             >
               <img src={logo?.src} alt={`Project Logo ${index}`} />

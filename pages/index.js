@@ -271,6 +271,10 @@ export default function Home() {
     };
   }, [height]);
 
+  const handleClick = (index) => {
+    lenisRef.current.scrollTo(index * height * 3 + height * 3);
+  };
+
   const scrollY = useScrollPosition();
 
   useEffect(() => {
@@ -642,6 +646,7 @@ export default function Home() {
           setShowBall={setShowBall}
           elementRef={stickyElementRef}
           scrollY={scrollY}
+          handleClick={handleClick}
         />
         {/* <section
           className={aboutme.contact}
