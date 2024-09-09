@@ -157,10 +157,10 @@
 .skillsWrapped {
   display: flex;
   align-items: center;
-  height: 4rem;
   position: relative;
   overflow: hidden;
-  width: 4rem;
+  height: 8vh;
+  width: 8vh;
   margin-inline: 0.5rem;
   // height: auto;
 }
@@ -176,12 +176,12 @@
   height: auto;
   img {
     width: 100%;
-    margin-bottom: 4rem;
+    margin-bottom: 4vh;
   }
   div {
-    width: 4rem;
-    height: 4rem;
-    margin-bottom: 4rem;
+    width: 8vh;
+    height: 8vh;
+    margin-bottom: 4vh;
   }
 }
 

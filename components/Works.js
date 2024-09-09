@@ -206,7 +206,7 @@ export default function Works({
               <div
                 className={styles.skillsContainer}
                 style={{
-                  top: `calc(-${100 * workIndex}% - ${4 * workIndex}rem)`,
+                  top: `calc(-${100 * workIndex}% - ${4 * workIndex}vh)`,
                   transitionDelay: `${50 * indexSkills}ms`,
                 }}
               >
@@ -238,8 +238,8 @@ export default function Works({
             <div
               style={{
                 backgroundColor: workIndex === index ? "#fff" : "#ccc",
-                width: workIndex === index ? "6rem" : "4rem",
-                height: workIndex === index ? "6rem" : "4rem",
+                width: workIndex === index ? "6vw" : "4vw",
+                height: workIndex === index ? "6vw" : "4vw",
               }}
               onClick={() => handleClickLogo(index)}
               key={`logo-${index}`}
