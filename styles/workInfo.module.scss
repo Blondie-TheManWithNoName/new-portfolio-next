@@ -191,14 +191,20 @@
   position: relative;
 }
 .nextCaseContainer {
+  // padding-block: 3vh;
+  border-left: 1px solid #af4261;
+  border-right: 1px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to top, #0086d1, #af4261);
   position: relative;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  // width: 50%;
+  padding-inline: 5vw;
   transition: all 600ms cubic-bezier(0.25, 1, 0.5, 1);
-  height: 48vh;
+  // height: 48vh;
 }
 
 .nextCase {
@@ -206,7 +212,7 @@
   text-transform: uppercase;
   font-size: 5.5vw;
   //   margin-top: 20vh;
-  letter-spacing: -0.25vw;
+  letter-spacing: -0.35vw;
   font-weight: 500;
   transition: 1000ms cubic-bezier(0.16, 1, 0.3, 1);
   //   z-index: 10;
@@ -244,8 +250,8 @@
 .backgroundTransition {
   position: absolute;
   background-color: white;
-  //   width: 6vw;
-  //   height: 6vw;
+  width: 6vw;
+  height: 6vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -261,7 +267,7 @@
 
 .nextCaseTitle {
   position: absolute;
-  top: 12.5vh;
+  top: 13vh;
   color: white;
   text-align: center;
   width: 100%;
@@ -329,6 +335,20 @@
   letter-spacing: 0vmin;
   color: white;
   border: 1px solid #9eafbb;
-  margin-top: 6vh;
+  margin-top: 20vh;
   // cursor: pointer;
+}
+
+.nextCaseContainer:hover .logoNextContainer {
+  // padding: 2vw;
+}
+
+.nextCaseContainer:hover .backgroundTransition {
+  // width: 7vw;
+  // height: 7vw;
+  // background-color: #af4261;
+}
+
+.nextCaseContainer:hover .nextCase {
+  letter-spacing: -0.1vw;
 }

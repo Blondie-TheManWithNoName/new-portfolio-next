@@ -294,14 +294,15 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
           <div className={styles.nextCaseTitle}>
             <h3 className={styles.smallTitle}>Next Case</h3>
           </div>
+
           <div
             className={styles.nextCaseContainer}
-            onMouseEnter={() =>
-              setShowBall({
-                show: true,
-                text: `${nextWork.url !== "snaketwo" ? "Next" : "Coming Soon"}`,
-              })
-            }
+            // onMouseEnter={() =>
+            //   setShowBall({
+            //     show: true,
+            //     text: `${nextWork.url !== "snaketwo" ? "Next" : "Coming Soon"}`,
+            //   })
+            // }
             onMouseLeave={() => setShowBall({ show: false, text: "" })}
             onClick={handleTransitionOut}
             style={{ marginTop: transitionIn ? "10vh" : "20vh" }}
@@ -321,13 +322,13 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
               <div
                 className={styles.backgroundTransition}
                 style={{
-                  width: transitionIn ? "150vw" : "6vw",
-                  height: transitionIn ? "150vw" : "6vw",
+                  width: transitionIn && "150vw",
+                  height: transitionIn && "150vw",
                 }}
               ></div>
             </div>
             <h3 className={styles.nextCase}>{nextWork.title}</h3>
-            <div className={styles.line}></div>
+            {/* <div className={styles.line}></div> */}
             {/* <div className={styles.nextCaseOverview}></div> */}
 
             {/* <div className={styles.background}></div> */}
