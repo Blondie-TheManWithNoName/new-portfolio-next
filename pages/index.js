@@ -25,6 +25,7 @@ import {
   delay,
 } from "framer-motion";
 import Works from "../components/Works";
+import WorksMobile from "../components/WorksMobile";
 import Image from "next/image";
 import BallAnimation from "../components/BallAnimation";
 
@@ -648,6 +649,8 @@ export default function Home() {
           scrollY={scrollY}
           handleClick={handleClick}
         />
+        {/* <WorksMobile /> */}
+
         {/* <section
           className={aboutme.contact}
           style={{ height: "200vh", marginTop: "20rem" }}
