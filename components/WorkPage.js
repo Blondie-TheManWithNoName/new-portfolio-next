@@ -14,13 +14,17 @@ import { useCurrentTime } from "../hooks/useCurrentTime";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import useWindowSize from "../hooks/useWIndowSize";
 import Head from "next/head";
+import BezierEasing from "bezier-easing";
 
 function WorkPage({ work, texts, video, nextWork, pills }) {
   const { width, height } = useWindowSize();
+  const lenisRef = useRef(null);
   const router = useRouter();
+  const easingIn = BezierEasing(0.65, 0, 0.35, 1);
   // Lenis
   useEffect(() => {
     const lenis = new Lenis();
+    lenisRef.current = lenis;
 
     function raf(time) {
       lenis.raf(time);
@@ -28,49 +32,24 @@ function WorkPage({ work, texts, video, nextWork, pills }) {
     }
 
     requestAnimationFrame(raf);
+    lenis.scrollTo(0, { immediate: true });
 
     return () => {
       lenis.destroy();
     };
   }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (typeof window !== "undefined") {
-      document.body.style.height = "100vh";
-
-      // Unblock scrolling after 3 seconds
-      const timer = setTimeout(() => {
-        document.body.style.height = "auto";
-      }, 0);
-
-      // Cleanup function to ensure scrolling is restored if the component unmounts
-      return () => {
-        clearTimeout(timer);
-        document.body.style.height = "auto";
-      };
-    }
-  }, []);
-
   const scrollToBottom = () => {
     const scrollToY =
       document.documentElement.scrollHeight - window.innerHeight;
 
-    animate(window.scrollY, scrollToY, {
-      duration: 0.4,
-      ease: [0.33, 1, 0.68, 1],
-      //   ease: [0.42, 0, 0.58, 1],
-      onUpdate: (latest) => {
-        window.scrollTo(0, latest);
-      },
-    });
+    lenisRef.current.scrollTo(scrollToY, { duration: 0.4, easing: easingIn });
   };
 
   const handleTransitionOut = () => {
     if (nextWork.url !== "snaketwo") {
       setTransitionIn(true);
       setShowBall(false);
-      // bottomRef.current?.scrollIntoView({ behavior: "smooth" });
       scrollToBottom();
 
       setTimeout(() => {
