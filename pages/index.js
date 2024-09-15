@@ -402,17 +402,19 @@ export default function Home() {
           Noah Guardiola
         </a>
       </header>
-      <header
-        className={classNames(
-          intro.header,
-          headerFixed ? intro.fadeIn : intro.fadeOut
-        )}
-        style={{ position: "fixed" }}
-      >
-        <a href="" style={{ color: headerColor }} tabIndex="-1">
-          Noah Guardiola
-        </a>
-      </header>
+      {width / height >= 1.5 && (
+        <header
+          className={classNames(
+            intro.header,
+            headerFixed ? intro.fadeIn : intro.fadeOut
+          )}
+          style={{ position: "fixed" }}
+        >
+          <a href="" style={{ color: headerColor }} tabIndex="-1">
+            Noah Guardiola
+          </a>
+        </header>
+      )}
       <main className={intro.main} ref={container}>
         <MouseBall
           show={showBall}
@@ -486,12 +488,14 @@ export default function Home() {
                     style={{
                       overflow: "visible",
                       paddingBottom: "2rem",
+                      textAlign: "end",
                     }}
                   >
                     with{" "}
                     <motion.span className={intro.gradientText}>
                       UX design
                     </motion.span>{" "}
+                    {width < 1000 && <br />}
                     focus
                   </motion.p>
                 </div>
@@ -522,7 +526,7 @@ export default function Home() {
           </div>
           <div className={aboutme.stack}>
             {/* <div className={aboutme.line}></div> */}
-            <div className={classNames(aboutme.line, "smallText")}>
+            <div className={classNames(aboutme.line, "smallTitle")}>
               MY STACK
             </div>
             <div className={aboutme.skillContainer}>
@@ -643,13 +647,15 @@ export default function Home() {
             <h2 className={intro.gradientText}>WORK</h2>
           </div>
         </section> */}
-        <Works
-          setShowBall={setShowBall}
-          elementRef={stickyElementRef}
-          scrollY={scrollY}
-          handleClick={handleClick}
-        />
-        {/* <WorksMobile /> */}
+        {width / height >= 1.5 && (
+          <Works
+            setShowBall={setShowBall}
+            elementRef={stickyElementRef}
+            scrollY={scrollY}
+            handleClick={handleClick}
+          />
+        )}
+        {width / height < 1.5 && <WorksMobile />}
 
         {/* <section
           className={aboutme.contact}
