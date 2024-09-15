@@ -86,7 +86,6 @@ export default function Works({
       style={{
         position: "relative",
         height: HEIGHT * logos.length,
-        backgroundColor: "red",
       }}
     >
       {/* <Sticky
