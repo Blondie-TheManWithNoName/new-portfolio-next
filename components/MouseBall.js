@@ -11,7 +11,8 @@ export default function MouseBall({
   ballAnimation,
   scrollY,
 }) {
-  const pixelSize = 75;
+  const { width, height } = useWindowSize();
+  const pixelSize = width / height > 1.5 ? 75 : 0;
   const [size, setSize] = useState(ballAnimation ? pixelSize : 0);
   const [text, setText] = useState("Hello");
   const [animation, setAnimation] = useState(true);
@@ -19,8 +20,6 @@ export default function MouseBall({
   let xStart = xStartProp;
   let yStart = yStartProp;
   const { x, y } = useMousePosition();
-
-  const { width, height } = useWindowSize();
 
   useEffect(() => {
     if (x !== 0 && y !== 0) {
