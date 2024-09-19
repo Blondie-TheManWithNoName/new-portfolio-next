@@ -12,7 +12,9 @@ export default function MouseBall({
   scrollY,
 }) {
   const { width, height } = useWindowSize();
-  const pixelSize = width / height > 1.5 ? 75 : 0;
+  // const pixelSize = width / height > 1.5 ? 75 : 0;
+  const pixelSize = 75;
+
   const [size, setSize] = useState(ballAnimation ? pixelSize : 0);
   const [text, setText] = useState("Hello");
   const [animation, setAnimation] = useState(true);
@@ -60,7 +62,16 @@ export default function MouseBall({
     //   Update the hovered state
     if (isHovered) setSize(pixelSize);
   }, [scrollY]);
-  useEffect(() => {}, [width]);
+  useEffect(() => {
+    if (width / height < 1.5) {
+      // setAnimation(false);
+      setEndAnimation(true);
+      setTimeout(() => {
+        setSize(0);
+        // setAnimation(false);
+      }, 2500);
+    }
+  }, [width, height]);
 
   return (
     <>
