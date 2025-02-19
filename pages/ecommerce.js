@@ -23,7 +23,7 @@ function Ecommerce() {
   const texts = {
     overview: `This ecommerce challenge is a project where a user can create, edit, delete and view shoe items, physical and digital. And the user is also able to map digital shoes to physical shoes to prepare hypothetical orders of the website.`,
     role: "Design, Development & Deploy",
-    page: "https://github.com/Blondie-TheManWithNoName/footway-challenge-backend/",
+    page: "https://github.com/Blondie-TheManWithNoName/footway-challenge-backend/tree/main/ecommerce",
     why: `This is a a challenge I made for an job interview. I was asked to make a full stack ecommerce website with several features including search, apply suggestions, filter products etc. `,
   };
 

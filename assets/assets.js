@@ -81,7 +81,7 @@ export const titles = [
   {
     title: "Ecommerce",
     description: "Fullstack Ecommerce Website Challenge",
-    page: "theogony",
+    page: "ecommerce",
   },
   {
     title: "Theogony",
