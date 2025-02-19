@@ -1,14 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import styles from "../styles/work.module.scss";
-import intro from "../styles/intro.module.scss";
+import React, { useEffect, useRef, useState } from "react";
+import { backgrounds, logos, skills, titles, videos } from "../assets/assets";
+
 import ParallaxImage from "./ParallaxImage";
-import useWindowSize from "../hooks/useWIndowSize";
-
 import classnames from "classnames";
-import { useRouter } from "next/router";
-
+import intro from "../styles/intro.module.scss";
 import { motion } from "framer-motion";
-import { logos, backgrounds, titles, skills, videos } from "../assets/assets";
+import styles from "../styles/work.module.scss";
+import { useRouter } from "next/router";
+import useWindowSize from "../hooks/useWIndowSize";
 
 export default function Works({
   setShowBall,
