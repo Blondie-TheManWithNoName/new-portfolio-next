@@ -77,7 +77,7 @@ export const backgrounds = [
 ];
 
 export const titles = [
-  { title: "⠀", description: "⠀" },
+  { title: "ㅤ", description: "ㅤ" },
   {
     title: "Ecommerce",
     description: "Fullstack Ecommerce Website Challenge",
