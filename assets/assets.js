@@ -108,7 +108,7 @@ export const titles = [
   //   title: "Dev Tools",
   //   description: "Website to post and find developers tools",
   // },
-  { title: "⠀", description: "⠀" },
+  { title: "ㅤ", description: "ㅤ" },
 ];
 
 export const skills = [
